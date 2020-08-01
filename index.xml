@@ -1,25 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>0xguid </title>
-    <link>https://dslash.xyz/</link>
+    <title>0xack13 - Terminal Adventures..</title>
+    <link>https://0xack13.github.io/</link>
+    <description>Recent content on 0xack13 - Terminal Adventures..</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <author></author>
-    <rights>(C) 2019</rights>
-    <updated>2019-07-01 23:15:25 -0400 EDT</updated>
-
     
-      
+	<atom:link href="https://0xack13.github.io/index.xml" rel="self" type="application/rss+xml" />
     
-      
     
-      
-    
-      
-    
-      
-    
-      
-    
-
   </channel>
 </rss>
