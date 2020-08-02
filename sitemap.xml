@@ -3,17 +3,32 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://0xack13.github.io/posts/run-mysql-on-docker/</loc>
-    <lastmod>2020-08-02T21:40:08+10:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://0xack13.github.io/</loc>
     <lastmod>2020-08-02T21:40:08+10:00</lastmod>
   </url>
   
   <url>
+    <loc>https://0xack13.github.io/categories/</loc>
+    <lastmod>2020-08-02T21:40:08+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://0xack13.github.io/categories/docker/</loc>
+    <lastmod>2020-08-02T21:40:08+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://0xack13.github.io/categories/mysql/</loc>
+    <lastmod>2020-08-02T21:40:08+10:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://0xack13.github.io/posts/</loc>
+    <lastmod>2020-08-02T21:40:08+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://0xack13.github.io/posts/run-mysql-on-docker/</loc>
     <lastmod>2020-08-02T21:40:08+10:00</lastmod>
   </url>
   
@@ -65,11 +80,6 @@
   <url>
     <loc>https://0xack13.github.io/posts/observablecollection-xamarin/</loc>
     <lastmod>2018-10-25T12:38:25+11:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://0xack13.github.io/categories/</loc>
-    <lastmod>2018-10-24T21:20:42+11:00</lastmod>
   </url>
   
   <url>
