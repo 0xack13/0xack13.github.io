@@ -6,73 +6,29 @@
     <description>Recent content in Posts on 0xack13 - Terminal Adventures..</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 01 Jul 2019 23:15:25 -0400</lastBuildDate>
     
 	<atom:link href="https://0xack13.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Graph Implementation</title>
-      <link>https://0xack13.github.io/posts/graph-implementation/</link>
-      <pubDate>Mon, 01 Jul 2019 23:15:25 -0400</pubDate>
+      <title></title>
+      <link>https://0xack13.github.io/posts/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://0xack13.github.io/posts/graph-implementation/</guid>
-      <description>Graph can be implemented in python using the code below:
-class Graph(object): def __init__(self, graph_dict=None): &amp;#34;&amp;#34;&amp;#34; initializes a graph object If no dictionary or None is given, an empty dictionary will be used &amp;#34;&amp;#34;&amp;#34; if graph_dict == None: graph_dict = {} self.__graph_dict = graph_dict def vertices(self): &amp;#34;&amp;#34;&amp;#34; returns the vertices of a graph &amp;#34;&amp;#34;&amp;#34; return list(self.__graph_dict.keys()) def edges(self): &amp;#34;&amp;#34;&amp;#34; returns the edges of a graph &amp;#34;&amp;#34;&amp;#34; return self.__generate_edges() def add_vertex(self, vertex): &amp;#34;&amp;#34;&amp;#34; If the vertex &amp;#34;vertex&amp;#34; is not in self.</description>
+      <guid>https://0xack13.github.io/posts/about/</guid>
+      <description>Random thoughts about my journey in development and DevOps stuff.</description>
     </item>
     
     <item>
-      <title>Python Notes</title>
-      <link>https://0xack13.github.io/posts/python-notes/</link>
-      <pubDate>Mon, 01 Jul 2019 21:46:38 -0400</pubDate>
+      <title></title>
+      <link>https://0xack13.github.io/posts/minikube-vmware-fusion/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://0xack13.github.io/posts/python-notes/</guid>
-      <description>Here&amp;rsquo;s a collection of notes that I believe it&amp;rsquo;s worth sharing in Python.
- privatemethod  Private Methods with Underscore You can define a private method in Python by specifying the underscore _ which is considered a general convention in the Python code for defining private variables. As an example, we can create a file httpcall.py and use the following code:
-httpcall.py
-import urllib.request from urllib.parse import urlparse # private function def _verify_url(url): try: result = urlparse(url) return all([result.</description>
-    </item>
-    
-    <item>
-      <title>Azure Devops Ssh Tasks</title>
-      <link>https://0xack13.github.io/posts/azure-devops-ssh-tasks/</link>
-      <pubDate>Wed, 26 Jun 2019 14:49:47 -0400</pubDate>
-      
-      <guid>https://0xack13.github.io/posts/azure-devops-ssh-tasks/</guid>
-      <description>I took me some time to figure out that there is a difference in the type of the supported SSH keys in the task SSH to run a shell command or to copy files over SSH. It turns out that copy files over SSH supports PEM files which can be generated using the following command:
-[azure@remotelinux ~]$ ssh-keygen -t rsa -m PEM Using the generated private key, add the information to the Service Connections in the Project Settings.</description>
-    </item>
-    
-    <item>
-      <title>Dockerizing Aspnet Core App</title>
-      <link>https://0xack13.github.io/posts/dockerizing-aspnet-core-app/</link>
-      <pubDate>Wed, 26 Jun 2019 06:56:18 -0400</pubDate>
-      
-      <guid>https://0xack13.github.io/posts/dockerizing-aspnet-core-app/</guid>
-      <description>Assuming that you have the correct docker environment, asp.net core app can run in a container using the following:
-FROMmcr.microsoft.com/dotnet/core/sdk:2.2 AS build-envWORKDIR/app# Copy csproj and restore as distinct layersCOPY *.csproj ./RUN dotnet restore# Copy everything else and buildCOPY . ./RUN dotnet publish -c Release -o out# Build runtime imageFROMmcr.microsoft.com/dotnet/core/aspnet:2.2WORKDIR/appCOPY --from=build-env /app/out .# RUN [&amp;#34;ls -alt&amp;#34;]ENTRYPOINT [&amp;#34;dotnet&amp;#34;, &amp;#34;DemoApp.dll&amp;#34;]% You might have noticed that the docker file in the previous example uses multi-stage builds in docker.</description>
-    </item>
-    
-    <item>
-      <title>Dockerizing ASP.NET core app</title>
-      <link>https://0xack13.github.io/posts/hello/</link>
-      <pubDate>Thu, 25 Oct 2018 12:38:25 +1100</pubDate>
-      
-      <guid>https://0xack13.github.io/posts/hello/</guid>
-      <description>Xamarin Forms bring a lot of flexiblity in terms of the mobile development for both iOS and Android platforms.
-public class Book { public string BookName { get; set; } } Let&amp;rsquo;s feed a list of books with random data:
-ObservableCollection&amp;lt;Employee&amp;gt; employees = new ObservableCollection&amp;lt;Employee&amp;gt;(); public FirstListViewSppPage() { InitializeComponent(); books.Add(new Book { DisplayName = &amp;#34;Rob Finnerty&amp;#34; }); books.Add(new Book { DisplayName = &amp;#34;Bill Wrestler&amp;#34; }); books.Add(new Book { DisplayName = &amp;#34;Dr.</description>
-    </item>
-    
-    <item>
-      <title>My First Post</title>
-      <link>https://0xack13.github.io/posts/my-first-post/</link>
-      <pubDate>Wed, 24 Oct 2018 21:20:42 +1100</pubDate>
-      
-      <guid>https://0xack13.github.io/posts/my-first-post/</guid>
-      <description>In these series, I will show lessons that I noticed during my learning journey of the javaascript language. I&amp;rsquo;m trying here to highlight on each tip on a practical way rather than devling into the details. Just keep in mind that Mozilla documentation should be your friend and you should be familiar with it.
-Well, I&amp;rsquo;d couldn&amp;rsquo;t help it either. So, you can skip to your tip.
- defineProperty ~indexOf [proto and prototype](#proto and prototype) call vs.</description>
+      <guid>https://0xack13.github.io/posts/minikube-vmware-fusion/</guid>
+      <description>Minikube can be installed and uses vmware fusion as a driver to virtualize Minikube:
+To install the vmware driver:
+brew install docker-machine-driver-vmware Then, we can easily install minikube along wih starting minikube with vmware driver:
+brew install minikube minikube start --driver=vmware </description>
     </item>
     
   </channel>

@@ -3,83 +3,27 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://0xack13.github.io/posts/about/</loc>
+  </url>
+  
+  <url>
+    <loc>https://0xack13.github.io/posts/minikube-vmware-fusion/</loc>
+  </url>
+  
+  <url>
     <loc>https://0xack13.github.io/</loc>
-    <lastmod>2019-07-01T23:15:25-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://0xack13.github.io/posts/graph-implementation/</loc>
-    <lastmod>2019-07-01T23:15:25-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://0xack13.github.io/posts/</loc>
-    <lastmod>2019-07-01T23:15:25-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://0xack13.github.io/posts/python-notes/</loc>
-    <lastmod>2019-07-01T21:46:38-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://0xack13.github.io/posts/azure-devops-ssh-tasks/</loc>
-    <lastmod>2019-06-26T14:49:47-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://0xack13.github.io/posts/dockerizing-aspnet-core-app/</loc>
-    <lastmod>2019-06-26T06:56:18-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://0xack13.github.io/posts/hello/</loc>
-    <lastmod>2018-10-25T12:38:25+11:00</lastmod>
   </url>
   
   <url>
     <loc>https://0xack13.github.io/categories/</loc>
-    <lastmod>2018-10-24T21:20:42+11:00</lastmod>
   </url>
   
   <url>
-    <loc>https://0xack13.github.io/tags/code/</loc>
-    <lastmod>2018-10-24T21:20:42+11:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://0xack13.github.io/tags/content/</loc>
-    <lastmod>2018-10-24T21:20:42+11:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://0xack13.github.io/categories/development/</loc>
-    <lastmod>2018-10-24T21:20:42+11:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://0xack13.github.io/tags/hugo/</loc>
-    <lastmod>2018-10-24T21:20:42+11:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://0xack13.github.io/posts/my-first-post/</loc>
-    <lastmod>2018-10-24T21:20:42+11:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://0xack13.github.io/categories/publishing/</loc>
-    <lastmod>2018-10-24T21:20:42+11:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://0xack13.github.io/tags/static-site-generator/</loc>
-    <lastmod>2018-10-24T21:20:42+11:00</lastmod>
+    <loc>https://0xack13.github.io/posts/</loc>
   </url>
   
   <url>
     <loc>https://0xack13.github.io/tags/</loc>
-    <lastmod>2018-10-24T21:20:42+11:00</lastmod>
   </url>
   
 </urlset>
