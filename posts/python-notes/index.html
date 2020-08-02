@@ -136,40 +136,40 @@ import urllib.request from urllib.parse import urlparse # private function def _
 <h3 id="a-idprivatemethoda-private-methods-with-underscore"><!-- raw HTML omitted --><!-- raw HTML omitted --> Private Methods with Underscore</h3>
 <p>You can define a private method in Python by specifying the underscore <code>_</code> which is considered a general convention in the Python code for defining private variables. As an example, we can create a file <code>httpcall.py</code> and use the following code:</p>
 <p><code>httpcall.py</code></p>
-<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#fb660a;font-weight:bold">import</span> urllib.request
-<span style="color:#fb660a;font-weight:bold">from</span> urllib.parse <span style="color:#fb660a;font-weight:bold">import</span> urlparse
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#6ab825;font-weight:bold">import</span> <span style="color:#447fcf;text-decoration:underline">urllib.request</span>
+<span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">urllib.parse</span> <span style="color:#6ab825;font-weight:bold">import</span> urlparse
 
-<span style="color:#080;background-color:#0f140f;font-style:italic"># private function</span>
-<span style="color:#fb660a;font-weight:bold">def</span> <span style="color:#ff0086;font-weight:bold">_verify_url</span>(url):
-    <span style="color:#fb660a;font-weight:bold">try</span>:
+<span style="color:#999;font-style:italic"># private function</span>
+<span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">_verify_url</span>(url):
+    <span style="color:#6ab825;font-weight:bold">try</span>:
         result = urlparse(url)
-        <span style="color:#fb660a;font-weight:bold">return</span> all([result.scheme, result.netloc])
-    <span style="color:#fb660a;font-weight:bold">except</span>:
-        <span style="color:#fb660a;font-weight:bold">return</span> False
+        <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#24909d">all</span>([result.scheme, result.netloc])
+    <span style="color:#6ab825;font-weight:bold">except</span>:
+        <span style="color:#6ab825;font-weight:bold">return</span> False
 
-<span style="color:#080;background-color:#0f140f;font-style:italic"># public method</span>
-<span style="color:#fb660a;font-weight:bold">def</span> <span style="color:#ff0086;font-weight:bold">get_http_resource</span>(url):
-    <span style="color:#fb660a;font-weight:bold">if</span> _verify_url(url) == False:
-        <span style="color:#fb660a;font-weight:bold">return</span> <span style="color:#0086d2">&#34;Error parsing the provided URL.&#34;</span>
+<span style="color:#999;font-style:italic"># public method</span>
+<span style="color:#6ab825;font-weight:bold">def</span> <span style="color:#447fcf">get_http_resource</span>(url):
+    <span style="color:#6ab825;font-weight:bold">if</span> _verify_url(url) == False:
+        <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#ed9d13">&#34;Error parsing the provided URL.&#34;</span>
     contents = urllib.request.urlopen(url).read()
-    title = str(contents).split(<span style="color:#0086d2">&#39;&lt;title&gt;&#39;</span>)[<span style="color:#0086f7;font-weight:bold">1</span>].split(<span style="color:#0086d2">&#39;&lt;/title&gt;&#39;</span>)[<span style="color:#0086f7;font-weight:bold">0</span>]
-    <span style="color:#fb660a;font-weight:bold">return</span> title
+    title = <span style="color:#24909d">str</span>(contents).split(<span style="color:#ed9d13">&#39;&lt;title&gt;&#39;</span>)[<span style="color:#3677a9">1</span>].split(<span style="color:#ed9d13">&#39;&lt;/title&gt;&#39;</span>)[<span style="color:#3677a9">0</span>]
+    <span style="color:#6ab825;font-weight:bold">return</span> title
 </code></pre></div><p>Now, let&rsquo;s open Python shell and explore the package:</p>
-<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">Python <span style="color:#0086f7;font-weight:bold">3.5</span>.<span style="color:#0086f7;font-weight:bold">0</span> (default, Jun <span style="color:#0086f7;font-weight:bold">29</span> <span style="color:#0086f7;font-weight:bold">2017</span>, <span style="color:#0086f7;font-weight:bold">22</span>:<span style="color:#0086f7;font-weight:bold">45</span>:<span style="color:#0086f7;font-weight:bold">13</span>)
-[GCC <span style="color:#0086f7;font-weight:bold">4.2</span>.<span style="color:#0086f7;font-weight:bold">1</span> Compatible Apple LLVM <span style="color:#0086f7;font-weight:bold">8.1</span>.<span style="color:#0086f7;font-weight:bold">0</span> (clang-<span style="color:#0086f7;font-weight:bold">802.0</span>.<span style="color:#0086f7;font-weight:bold">42</span>)] on darwin
-Type <span style="color:#0086d2">&#34;help&#34;</span>, <span style="color:#0086d2">&#34;copyright&#34;</span>, <span style="color:#0086d2">&#34;credits&#34;</span> or <span style="color:#0086d2">&#34;license&#34;</span> <span style="color:#fb660a;font-weight:bold">for</span> more information.
-&gt;&gt;&gt; <span style="color:#fb660a;font-weight:bold">import</span> httpcall
-&gt;&gt;&gt; dir(httpcall)
-[<span style="color:#0086d2">&#39;__builtins__&#39;</span>, <span style="color:#0086d2">&#39;__cached__&#39;</span>, <span style="color:#0086d2">&#39;__doc__&#39;</span>, <span style="color:#0086d2">&#39;__file__&#39;</span>, <span style="color:#0086d2">&#39;__loader__&#39;</span>, <span style="color:#0086d2">&#39;__name__&#39;</span>, <span style="color:#0086d2">&#39;__package__&#39;</span>, <span style="color:#0086d2">&#39;__spec__&#39;</span>, <span style="color:#0086d2">&#39;_verify_url&#39;</span>, <span style="color:#0086d2">&#39;get_http_resource&#39;</span>, <span style="color:#0086d2">&#39;urllib&#39;</span>, <span style="color:#0086d2">&#39;urlparse&#39;</span>]
-&gt;&gt;&gt; <span style="color:#fb660a;font-weight:bold">from</span> httpcall <span style="color:#fb660a;font-weight:bold">import</span> *
-&gt;&gt;&gt; _verify_url(<span style="color:#0086d2">&#34;http://google.com&#34;</span>) <span style="color:#080;background-color:#0f140f;font-style:italic"># method can&#39;t be called due to the underscore &#34;private&#34;</span>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">Python <span style="color:#3677a9">3.5</span>.<span style="color:#3677a9">0</span> (default, Jun <span style="color:#3677a9">29</span> <span style="color:#3677a9">2017</span>, <span style="color:#3677a9">22</span>:<span style="color:#3677a9">45</span>:<span style="color:#3677a9">13</span>)
+[GCC <span style="color:#3677a9">4.2</span>.<span style="color:#3677a9">1</span> Compatible Apple LLVM <span style="color:#3677a9">8.1</span>.<span style="color:#3677a9">0</span> (clang-<span style="color:#3677a9">802.0</span>.<span style="color:#3677a9">42</span>)] on darwin
+Type <span style="color:#ed9d13">&#34;help&#34;</span>, <span style="color:#ed9d13">&#34;copyright&#34;</span>, <span style="color:#ed9d13">&#34;credits&#34;</span> <span style="color:#6ab825;font-weight:bold">or</span> <span style="color:#ed9d13">&#34;license&#34;</span> <span style="color:#6ab825;font-weight:bold">for</span> more information.
+&gt;&gt;&gt; <span style="color:#6ab825;font-weight:bold">import</span> <span style="color:#447fcf;text-decoration:underline">httpcall</span>
+&gt;&gt;&gt; <span style="color:#24909d">dir</span>(httpcall)
+[<span style="color:#ed9d13">&#39;__builtins__&#39;</span>, <span style="color:#ed9d13">&#39;__cached__&#39;</span>, <span style="color:#ed9d13">&#39;__doc__&#39;</span>, <span style="color:#ed9d13">&#39;__file__&#39;</span>, <span style="color:#ed9d13">&#39;__loader__&#39;</span>, <span style="color:#ed9d13">&#39;__name__&#39;</span>, <span style="color:#ed9d13">&#39;__package__&#39;</span>, <span style="color:#ed9d13">&#39;__spec__&#39;</span>, <span style="color:#ed9d13">&#39;_verify_url&#39;</span>, <span style="color:#ed9d13">&#39;get_http_resource&#39;</span>, <span style="color:#ed9d13">&#39;urllib&#39;</span>, <span style="color:#ed9d13">&#39;urlparse&#39;</span>]
+&gt;&gt;&gt; <span style="color:#6ab825;font-weight:bold">from</span> <span style="color:#447fcf;text-decoration:underline">httpcall</span> <span style="color:#6ab825;font-weight:bold">import</span> *
+&gt;&gt;&gt; _verify_url(<span style="color:#ed9d13">&#34;http://google.com&#34;</span>) <span style="color:#999;font-style:italic"># method can&#39;t be called due to the underscore &#34;private&#34;</span>
 Traceback (most recent call last):
-  File <span style="color:#0086d2">&#34;&lt;stdin&gt;&#34;</span>, line <span style="color:#0086f7;font-weight:bold">1</span>, in &lt;module&gt;
-NameError: name <span style="color:#0086d2">&#39;_verify_url&#39;</span> is not defined
-&gt;&gt;&gt; get_http_resource(<span style="color:#0086d2">&#34;http://google.com&#34;</span>)
-<span style="color:#0086d2">&#39;Google&#39;</span>
-&gt;&gt;&gt; <span style="color:#fb660a;font-weight:bold">import</span> httpcall <span style="color:#fb660a;font-weight:bold">as</span> hc
-&gt;&gt;&gt; hc._verify_url(<span style="color:#0086d2">&#34;http://google.com&#34;</span>) <span style="color:#080;background-color:#0f140f;font-style:italic"># calling the private method directly is possible using the normal import </span>
+  File <span style="color:#ed9d13">&#34;&lt;stdin&gt;&#34;</span>, line <span style="color:#3677a9">1</span>, <span style="color:#6ab825;font-weight:bold">in</span> &lt;module&gt;
+<span style="color:#bbb">NameError</span>: name <span style="color:#ed9d13">&#39;_verify_url&#39;</span> <span style="color:#6ab825;font-weight:bold">is</span> <span style="color:#6ab825;font-weight:bold">not</span> defined
+&gt;&gt;&gt; get_http_resource(<span style="color:#ed9d13">&#34;http://google.com&#34;</span>)
+<span style="color:#ed9d13">&#39;Google&#39;</span>
+&gt;&gt;&gt; <span style="color:#6ab825;font-weight:bold">import</span> <span style="color:#447fcf;text-decoration:underline">httpcall</span> <span style="color:#6ab825;font-weight:bold">as</span> <span style="color:#447fcf;text-decoration:underline">hc</span>
+&gt;&gt;&gt; hc._verify_url(<span style="color:#ed9d13">&#34;http://google.com&#34;</span>) <span style="color:#999;font-style:italic"># calling the private method directly is possible using the normal import </span>
 True
 </code></pre></div><p>Please note that there is no enforcement in having the private variable defined by using the underscore. Rather, it&rsquo;s a convention for the developers in which they can emphsize the accessiblity level of that variable.</p>
 

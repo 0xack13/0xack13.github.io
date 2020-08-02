@@ -12,11 +12,11 @@
     
     
     <item>
-      <title>My First Post</title>
-      <link>https://0xack13.github.io/posts/my-first-post/</link>
+      <title>Javscript Notes</title>
+      <link>https://0xack13.github.io/posts/javascript-notes/</link>
       <pubDate>Wed, 24 Oct 2018 21:20:42 +1100</pubDate>
       
-      <guid>https://0xack13.github.io/posts/my-first-post/</guid>
+      <guid>https://0xack13.github.io/posts/javascript-notes/</guid>
       <description>In these series, I will show lessons that I noticed during my learning journey of the javaascript language. I&amp;rsquo;m trying here to highlight on each tip on a practical way rather than devling into the details. Just keep in mind that Mozilla documentation should be your friend and you should be familiar with it.
 Well, I&amp;rsquo;d couldn&amp;rsquo;t help it either. So, you can skip to your tip.
  defineProperty ~indexOf [proto and prototype](#proto and prototype) call vs.</description>

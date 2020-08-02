@@ -124,21 +124,21 @@
       <div>
         
         <p>I took me some time to figure out that there is a difference in the type of the supported SSH keys in the task SSH to run a shell command or to copy files over SSH. It turns out that copy files over SSH supports PEM files which can be generated using the following command:</p>
-<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">[azure@remotelinux ~]$ ssh-keygen -t rsa -m PEM
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">[azure@remotelinux ~]$ ssh-keygen -t rsa -m PEM
 </code></pre></div><p>Using the generated private key, add the information to the <code>Service Connections</code> in the <code>Project Settings</code>.</p>
 <p>The task should look like the below:</p>
-<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">- task: CopyFilesOverSSH@0
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">- task: CopyFilesOverSSH@0
   inputs:
-    sshEndpoint: <span style="color:#0086d2">&#39;azurevm&#39;</span>
-    sourceFolder: <span style="color:#0086d2">&#39;$(Agent.BuildDirectory)&#39;</span>
-    contents: <span style="color:#0086d2">&#39;**&#39;</span>
-    targetFolder: <span style="color:#0086d2">&#39;/home/azure&#39;</span>
+    sshEndpoint: <span style="color:#ed9d13">&#39;azurevm&#39;</span>
+    sourceFolder: <span style="color:#ed9d13">&#39;$(Agent.BuildDirectory)&#39;</span>
+    contents: <span style="color:#ed9d13">&#39;**&#39;</span>
+    targetFolder: <span style="color:#ed9d13">&#39;/home/azure&#39;</span>
 </code></pre></div><p>The SSH task to execute shell commands support default types of OpenSSH private keys which don&rsquo;t necessiraly have to be PEM files. It&rsquo;s also worth mentioning that the PEM files are support by the SSH tasks to execute shell commands. So it&rsquo;s safe to say that you can also use PEM files for any SSH tasks.</p>
-<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">- task: SSH@0
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">- task: SSH@0
   inputs:
-    sshEndpoint: <span style="color:#0086d2">&#39;azurevm&#39;</span>
-    runOptions: <span style="color:#0086d2">&#39;commands&#39;</span>
-    commands: <span style="color:#0086d2">&#39;ls -alt&#39;</span>
+    sshEndpoint: <span style="color:#ed9d13">&#39;azurevm&#39;</span>
+    runOptions: <span style="color:#ed9d13">&#39;commands&#39;</span>
+    commands: <span style="color:#ed9d13">&#39;ls -alt&#39;</span>
 </code></pre></div>
       </div>
 

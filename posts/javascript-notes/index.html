@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="en">
+
+    
+    <meta name="description" content="In these series, I will show lessons that I noticed during my learning journey of the javaascript language. I&rsquo;m trying here to highlight on each tip on a practical way rather than devling into the details. Just keep in mind that Mozilla documentation should be your friend and you should be familiar with it.
+Well, I&rsquo;d couldn&rsquo;t help it either. So, you can skip to your tip.
+ defineProperty ~indexOf [proto and prototype](#proto and prototype) call vs.">
+    <meta name="keywords" content="">
+
+    
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Javscript Notes"/>
+<meta name="twitter:description" content="In these series, I will show lessons that I noticed during my learning journey of the javaascript language. I&rsquo;m trying here to highlight on each tip on a practical way rather than devling into the details. Just keep in mind that Mozilla documentation should be your friend and you should be familiar with it.
+Well, I&rsquo;d couldn&rsquo;t help it either. So, you can skip to your tip.
+ defineProperty ~indexOf [proto and prototype](#proto and prototype) call vs."/>
+
+    <meta property="og:title" content="Javscript Notes" />
+<meta property="og:description" content="In these series, I will show lessons that I noticed during my learning journey of the javaascript language. I&rsquo;m trying here to highlight on each tip on a practical way rather than devling into the details. Just keep in mind that Mozilla documentation should be your friend and you should be familiar with it.
+Well, I&rsquo;d couldn&rsquo;t help it either. So, you can skip to your tip.
+ defineProperty ~indexOf [proto and prototype](#proto and prototype) call vs." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://0xack13.github.io/posts/javascript-notes/" />
+<meta property="article:published_time" content="2018-10-24T21:20:42+11:00" />
+<meta property="article:modified_time" content="2018-10-24T21:20:42+11:00" /><meta property="og:site_name" content="0xack13 - Terminal Adventures.." />
+
+
+    
+      <base href="https://0xack13.github.io/posts/javascript-notes/">
+    
+    <title>
+  Javscript Notes · 0xack13 - Terminal Adventures..
+</title>
+
+    
+      <link rel="canonical" href="https://0xack13.github.io/posts/javascript-notes/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://0xack13.github.io/css/coder.min.3219ef62ae52679b7a9c19043171c3cd9f523628c2a65f3ef247ee18836bc90b.css" integrity="sha256-MhnvYq5SZ5t6nBkEMXHDzZ9SNijCpl8&#43;8kfuGINryQs=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://0xack13.github.io/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://0xack13.github.io/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.74.3" />
+  </head>
+
+  
+  
+  <body class="colorscheme-light"
+        onload=""
+  >
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://0xack13.github.io/">
+      0xack13 - Terminal Adventures..
+    </a>
+    
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://0xack13.github.io/about">About</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://0xack13.github.io/posts">Posts</a>
+          </li>
+        
+      
+      
+    </ul>
+    
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Javscript Notes</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2018-10-24T21:20:42&#43;11:00'>
+                October 24, 2018
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              5-minute read
+            </span>
+          </div>
+          <div class="categories">
+  <i class="fas fa-folder"></i>
+    <a href="https://0xack13.github.io/categories/development/">development</a>
+      <span class="separator">•</span>
+    <a href="https://0xack13.github.io/categories/publishing/">publishing</a></div>
+
+          <div class="tags">
+  <i class="fas fa-tag"></i>
+    <a href="https://0xack13.github.io/tags/js/">js</a>
+      <span class="separator">•</span>
+    <a href="https://0xack13.github.io/tags/dev/">dev</a></div>
+
+        </div>
+      </header>
+
+      <div>
+        
+        <p>In these series, I will show lessons that I noticed during my learning journey of the javaascript language. I&rsquo;m trying here to highlight on each tip on a practical way rather than devling into the details. Just keep in mind that <code>Mozilla</code> documentation should be your friend and you should be familiar with it.</p>
+<p>Well, I&rsquo;d couldn&rsquo;t help it either. So, you can skip to your tip.</p>
+<ul>
+<li><a href="#defineProperty">defineProperty</a></li>
+<li><a href="#~indexOf">~indexOf</a></li>
+<li>[<strong>proto</strong> and prototype](#<strong>proto</strong> and prototype)</li>
+<li><a href="#callvsapply">call vs. apply</a></li>
+<li><a href="#Clojure">Clojure</a></li>
+<li><a href="#Hoisting">Hoisting</a></li>
+<li><a href="#Shadowing">Shadowing</a></li>
+<li><a href="#patterns">patterns</a></li>
+<li><a href="#strictMode">Strict Mode</a></li>
+<li><a href="#Prmoise">Pormise</a></li>
+<li><a href="#generators">generator</a></li>
+<li><a href="#iterators">iterators</a></li>
+<li><a href="#callbacks">callback</a></li>
+<li><a href="#currying">currying</a></li>
+<li><a href="#async">async</a></li>
+<li><a href="#this">this</a></li>
+</ul>
+<h3 id="a-iddefinepropertya-defineproperty"><!-- raw HTML omitted --><!-- raw HTML omitted --> defineProperty</h3>
+<p>As the name implies, <code>defineProperty</code> defines a new property on an object.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#999;font-style:italic">/** initialize an empty object literal */</span>
+example = {};
+<span style="color:#999;font-style:italic">// ▹ {}
+</span><span style="color:#999;font-style:italic"></span>
+<span style="color:#24909d">Object</span>.defineProperty(example, <span style="color:#ed9d13">&#39;saySomething&#39;</span>, { 
+    get: <span style="color:#6ab825;font-weight:bold">function</span>() {
+      <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#ed9d13">&#34;saySomething getter!&#34;</span>;
+    },
+    set: <span style="color:#6ab825;font-weight:bold">function</span>(value) {
+      <span style="color:#6ab825;font-weight:bold">return</span> value;
+    }
+ });
+
+<span style="color:#999;font-style:italic">/** Check whether the &#39;saySomething&#39; property exists or not. */</span>
+example.hasOwnProperty(<span style="color:#ed9d13">&#39;saySomething&#39;</span>)
+<span style="color:#999;font-style:italic">// ▹ true
+</span><span style="color:#999;font-style:italic"></span>
+example.saySomething
+<span style="color:#999;font-style:italic">// ▹ &#39;saySomething getter!&#39;
+</span><span style="color:#999;font-style:italic"></span>
+</code></pre></div><p>It would be really practical to come up with a scenario that all <code>String</code> objects should have a <code>reverse</code> function which obviously should reverse the each letter in the <code>String</code> object. That can simply achieved by using <code>defineProperty</code> to add the new property <code>customReverse</code> to <code>String.prototype</code>.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#6ab825;font-weight:bold">if</span> (!<span style="color:#24909d">String</span>.prototype.customReverse) {
+  <span style="color:#24909d">Object</span>.defineProperty(<span style="color:#24909d">String</span>.prototype, <span style="color:#ed9d13">&#39;customReverse&#39;</span>, {
+    value: <span style="color:#6ab825;font-weight:bold">function</span>() {
+      <span style="color:#999;font-style:italic">/** Just note that `reverse()` method here is used to reverse an `Array` */</span> 
+      <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#6ab825;font-weight:bold">this</span>.split(<span style="color:#ed9d13">&#39;&#39;</span>).reverse().join(<span style="color:#ed9d13">&#39;&#39;</span>);
+    }
+  });
+}
+
+<span style="color:#ed9d13">&#39;ABCD...&#39;</span>.customReverse()
+<span style="color:#999;font-style:italic">// ▹ &#39;...DCBA&#39;
+</span><span style="color:#999;font-style:italic"></span>
+</code></pre></div><h3 id="a-idindexofaindexof"><!-- raw HTML omitted --><!-- raw HTML omitted -->~indexOf</h3>
+<p><code>indexOf</code> is a case-sensitive method that returns the index within the calling <code>String</code> of the first matching <code>String</code> in its specified value. The return value is:</p>
+<ul>
+<li><code>-1</code> if not found</li>
+<li>Positive integer value (including <code>0</code>) of the index in the calling <code>String</code>. Well, that makes sense since the <code>String</code> index will start from <code>0</code>.</li>
+</ul>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#ed9d13">&#39;ABCD&#39;</span>.indexOf(<span style="color:#ed9d13">&#39;C&#39;</span>)
+<span style="color:#999;font-style:italic">// ▹ 2
+</span><span style="color:#999;font-style:italic"></span><span style="color:#ed9d13">&#39;ABCD&#39;</span>.indexOf(<span style="color:#ed9d13">&#39;Z&#39;</span>)
+<span style="color:#999;font-style:italic">// ▹ -1
+</span><span style="color:#999;font-style:italic"></span><span style="color:#ed9d13">&#39;ABCD&#39;</span>.indexOf(<span style="color:#ed9d13">&#39;A&#39;</span>)
+<span style="color:#999;font-style:italic">// ▹ 0
+</span><span style="color:#999;font-style:italic"></span>
+</code></pre></div><p>The most important note is that the return value of this method doesn&rsquo;t evaluate to <code>true</code> or <code>false</code>. So, it&rsquo;s your responsiblity to validate that. A very classical approach to achieve that is to check if the return value of the index is above <code>-1</code>.</p>
+<p>Let&rsquo;s test that by using the ternary operator <code>?</code>:</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">
+<span style="color:#ed9d13">&#39;ABCD&#39;</span>.indexOf(<span style="color:#ed9d13">&#39;A&#39;</span>) &gt;= <span style="color:#3677a9">0</span> ? <span style="color:#ed9d13">&#34;Found!&#34;</span> : <span style="color:#ed9d13">&#34;Oops, not found..&#34;</span>;
+<span style="color:#999;font-style:italic">// ▹ &#39;Found!&#39;
+</span><span style="color:#999;font-style:italic"></span><span style="color:#ed9d13">&#39;ABCD&#39;</span>.indexOf(<span style="color:#ed9d13">&#39;Z&#39;</span>) &gt;= <span style="color:#3677a9">0</span> ? <span style="color:#ed9d13">&#34;Found!&#34;</span> : <span style="color:#ed9d13">&#34;Oops, not found..&#34;</span>;
+<span style="color:#999;font-style:italic">// ▹ &#39;Oops, not found..&#39;
+</span></code></pre></div><p>A cleaner way to get around that <code>&gt;=0</code> syntax is to use the binary <code>NOT</code> operator <code>~</code>. This will simply make the code cleaner by returning <code>true</code> or <code>false</code> for the index values. Therefore:</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">
+~<span style="color:#ed9d13">&#39;ABCD&#39;</span>.indexOf(<span style="color:#ed9d13">&#39;A&#39;</span>) ? <span style="color:#ed9d13">&#34;Found!&#34;</span> : <span style="color:#ed9d13">&#34;Oops, not found..&#34;</span>;
+<span style="color:#999;font-style:italic">// ▹ &#39;Found!&#39;
+</span><span style="color:#999;font-style:italic"></span>~<span style="color:#ed9d13">&#39;ABCD&#39;</span>.indexOf(<span style="color:#ed9d13">&#39;Z&#39;</span>) ? <span style="color:#ed9d13">&#34;Found!&#34;</span> : <span style="color:#ed9d13">&#34;Oops, not found..&#34;</span>;
+<span style="color:#999;font-style:italic">// ▹ &#39;Oops, not found..&#39;
+</span><span style="color:#999;font-style:italic"></span>
+</code></pre></div><h3 id="a-id__proto__-and-prototypea-__proto__-and-prototype"><!-- raw HTML omitted --><!-- raw HTML omitted --> _<em>proto</em>_ and prototype</h3>
+<p>The <code>prototype</code> property exists functions. Say for example:</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">
+<span style="color:#6ab825;font-weight:bold">function</span> dummyFunc() {
+  <span style="color:#6ab825;font-weight:bold">return</span> <span style="color:#ed9d13">&#39;check my prototype property&#39;</span>;
+}
+
+</code></pre></div><h3 id="a-idcallvsapplya-call-vs-apply"><!-- raw HTML omitted --><!-- raw HTML omitted --> call vs. apply</h3>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">speak.apply(fatRabbit, [<span style="color:#ed9d13">&#34;Burp!&#34;</span>]);
+<span style="color:#999;font-style:italic">// ▹ The fat rabbit says &#39;Burp!&#39;
+</span><span style="color:#999;font-style:italic"></span>speak.call({type: <span style="color:#ed9d13">&#34;old&#34;</span>}, <span style="color:#ed9d13">&#34;Oh my.&#34;</span>);
+<span style="color:#999;font-style:italic">// ▹ The old rabbit says &#39;Oh my.&#39;
+</span></code></pre></div><h3 id="a-idclosurea-closure"><!-- raw HTML omitted --><!-- raw HTML omitted --> Closure</h3>
+<p>Closure can be a daunting concept to get your head around it. The best way to think of it is to remember that a closure should have:</p>
+<ul>
+<li>Outer Function</li>
+<li>Inner Function (which is inside the outer function)</li>
+<li>Variables in the outer function are accessible by the inner function. Even after the outer function has returned.</li>
+</ul>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#999;font-style:italic">/** Outer Function */</span>
+<span style="color:#6ab825;font-weight:bold">function</span> colorMyCar() {
+    <span style="color:#999;font-style:italic">/** Variable in the Outer Function */</span>
+    <span style="color:#6ab825;font-weight:bold">var</span> myCarName = <span style="color:#ed9d13">&#34;Nissan&#34;</span>;
+    <span style="color:#999;font-style:italic">/** Inner Function */</span>
+    <span style="color:#6ab825;font-weight:bold">function</span> colorIt(colorName) {
+        <span style="color:#999;font-style:italic">/** Variables in the OF is accessible here (in the IF) */</span>
+        <span style="color:#6ab825;font-weight:bold">return</span> myCarName + <span style="color:#ed9d13">&#34; is &#34;</span> + colorName;
+    }
+    <span style="color:#999;font-style:italic">/** Return the IF */</span>
+    <span style="color:#6ab825;font-weight:bold">return</span> colorIt;
+}
+
+<span style="color:#6ab825;font-weight:bold">var</span> c = colorMyCar();
+<span style="color:#999;font-style:italic">// ▹ undefined
+</span><span style="color:#999;font-style:italic"></span>c(<span style="color:#ed9d13">&#34;Red!&#34;</span>)
+<span style="color:#999;font-style:italic">// ▹ &#39;Nissan is Red!&#39;
+</span><span style="color:#999;font-style:italic">// ▹ &#39;Nissan is Red!&#39;
+</span><span style="color:#999;font-style:italic">// ▹ &#39;Nissan is Red!&#39;
+</span><span style="color:#999;font-style:italic"></span>c(<span style="color:#ed9d13">&#34;Yellow!&#34;</span>)
+<span style="color:#999;font-style:italic">// ▹ &#39;Nissan is Yellow!&#39;
+</span><span style="color:#999;font-style:italic"></span>c(<span style="color:#ed9d13">&#34;Blue!&#34;</span>)
+<span style="color:#999;font-style:italic">// ▹ &#39;Nissan is Blue!&#39;
+</span></code></pre></div><h3 id="a-idhoistinga-hoisting"><!-- raw HTML omitted --><!-- raw HTML omitted --> Hoisting</h3>
+<p>As its name implies, hoisting is the mechansim of moving the <code>decleration</code> and <code>NOT initialization</code> of the variables and functions.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#999;font-style:italic">/** Outer Function */</span>
+<span style="color:#6ab825;font-weight:bold">function</span> tellAStory3() {
+      console.log(varBelow); 
+      varBelow = <span style="color:#ed9d13">&#34;Got hoisted!&#34;</span>;
+      <span style="color:#6ab825;font-weight:bold">var</span> varBelow;
+};
+</code></pre></div><h3 id="a-idshadowinga-shadowing"><!-- raw HTML omitted --><!-- raw HTML omitted --> Shadowing</h3>
+<p>Shadowing can help in defining the same variable name in a different scope.</p>
+<h3 id="a-iditeratora-iterator"><!-- raw HTML omitted --><!-- raw HTML omitted --> Iterator</h3>
+<p>Iterator is an object that uses <code>next</code> to move to the next item of the sequence. Therefore, it knows its position in the sequence. One important note to remember is that you don&rsquo;t need to maintain the state of an iterator. This is the opposite of a <code>generator</code>.</p>
+<h3 id="a-idgeneratora-generator"><!-- raw HTML omitted --><!-- raw HTML omitted --> Generator</h3>
+<p>A generator uses <code>yield</code> method that can pause or resume the generator. In order to execute the generator, you should use the <code>next</code> method which will execute the generator until it reaches the <code>yield</code> line.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#999;font-style:italic">/** Generator syntax function* */</span>
+<span style="color:#6ab825;font-weight:bold">function</span>* getStates() {
+  <span style="color:#6ab825;font-weight:bold">yield</span> <span style="color:#ed9d13">&#39;First&#39;</span>;
+  <span style="color:#6ab825;font-weight:bold">yield</span> <span style="color:#ed9d13">&#39;Second&#39;</span>;
+  <span style="color:#6ab825;font-weight:bold">yield</span> <span style="color:#ed9d13">&#39;Last&#39;</span>;
+}
+
+<span style="color:#6ab825;font-weight:bold">for</span> (<span style="color:#6ab825;font-weight:bold">let</span> state <span style="color:#6ab825;font-weight:bold">of</span> getStates()) {
+  console.log(state);
+}
+
+<span style="color:#999;font-style:italic">// ▹ First
+</span><span style="color:#999;font-style:italic">// ▹ Second
+</span><span style="color:#999;font-style:italic">// ▹ Last
+</span><span style="color:#999;font-style:italic"></span>
+</code></pre></div><p>Now, let&rsquo;s modify the above code with a pause/resume capability.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#999;font-style:italic">/** Generator syntax function* */</span>
+<span style="color:#6ab825;font-weight:bold">function</span>* getStates() {
+  console.log(<span style="color:#ed9d13">&#34;Before First&#34;</span>);
+  <span style="color:#6ab825;font-weight:bold">yield</span> <span style="color:#ed9d13">&#39;First&#39;</span>;
+  console.log(<span style="color:#ed9d13">&#34;After First and Before Second&#34;</span>);
+  <span style="color:#6ab825;font-weight:bold">yield</span> <span style="color:#ed9d13">&#39;Second&#39;</span>;
+  console.log(<span style="color:#ed9d13">&#34;After Second and Before Third&#34;</span>);
+  <span style="color:#6ab825;font-weight:bold">yield</span> <span style="color:#ed9d13">&#39;Last&#39;</span>;
+  console.log(<span style="color:#ed9d13">&#34;I&#39;m done!&#34;</span>);
+}
+
+<span style="color:#6ab825;font-weight:bold">let</span> gs = getStates();
+
+console.log(<span style="color:#ed9d13">&#34;Calling next for the first time..&#34;</span>);
+console.log(gs.next());
+
+console.log(<span style="color:#ed9d13">&#34;Calling next for the second time..&#34;</span>);
+console.log(gs.next());
+
+console.log(<span style="color:#ed9d13">&#34;Calling next for the third [last] time..&#34;</span>);
+console.log(gs.next());
+
+console.log(<span style="color:#ed9d13">&#34;Calling next for the fourth time..&#34;</span>);
+console.log(gs.next());
+
+<span style="color:#999;font-style:italic">// ▹ Calling next for the first time..
+</span><span style="color:#999;font-style:italic">// ▹ Before First
+</span><span style="color:#999;font-style:italic">// ▹ { value: &#39;First&#39;, done: false }
+</span><span style="color:#999;font-style:italic"></span>
+<span style="color:#999;font-style:italic">// ▹ Calling next for the second time..
+</span><span style="color:#999;font-style:italic">// ▹ After First and Before Second
+</span><span style="color:#999;font-style:italic">// ▹ { value: &#39;Second&#39;, done: false }
+</span><span style="color:#999;font-style:italic"></span>
+<span style="color:#999;font-style:italic">// ▹ Calling next for the third [last] time..
+</span><span style="color:#999;font-style:italic">// ▹ After Second and Before Third
+</span><span style="color:#999;font-style:italic">// ▹ { value: &#39;Last&#39;, done: false }
+</span><span style="color:#999;font-style:italic"></span>
+<span style="color:#999;font-style:italic">// ▹ Calling next for the fourth time..
+</span><span style="color:#999;font-style:italic">// ▹ I&#39;m done!
+</span><span style="color:#999;font-style:italic">// ▹ { value: undefined, done: true }
+</span></code></pre></div><h3 id="a-idvallbacka-callback"><!-- raw HTML omitted --><!-- raw HTML omitted --> Callback</h3>
+<p>Simply put, <code>Callback</code> is a mechanism of passing a function to another function as an argument.</p>
+<div class="highlight"><pre style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#6ab825;font-weight:bold">function</span> greetMe() {
+  console.log(<span style="color:#ed9d13">&#39;Callback says: Hello there!&#39;</span>);
+}
+
+<span style="color:#6ab825;font-weight:bold">function</span> callingFunc(callbackFunc) {
+  console.log(<span style="color:#ed9d13">&#34;I&#39;m going to call a callback!&#34;</span>);
+  callbackFunc();
+}
+
+callingFunc(greetMe);
+
+<span style="color:#999;font-style:italic">// ▹ I&#39;m going to call a callback!
+</span><span style="color:#999;font-style:italic">// ▹ Callback says: Hello there!
+</span></code></pre></div>
+      </div>
+
+
+      <footer>
+        
+
+
+        
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      
+  <footer class="footer">
+    <section class="container">
+      
+      
+        ©
+        
+        2020
+        
+      
+      
+         · 
+        Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+      
+      
+    </section>
+  </footer>
+
+    </main>
+
+    
+
+    
+
+    
+
+  </body>
+
+</html>
