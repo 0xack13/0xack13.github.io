@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>darwin on 0xack13 - Terminal Adventures..</title>
+    <link>https://0xack13.github.io/tags/darwin/</link>
+    <description>Recent content in darwin on 0xack13 - Terminal Adventures..</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 26 Jul 2020 14:49:47 -0400</lastBuildDate>
+    
+	<atom:link href="https://0xack13.github.io/tags/darwin/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Minikube with VMware Fusion Driver</title>
+      <link>https://0xack13.github.io/posts/minikube-vmware-fusion/</link>
+      <pubDate>Sun, 26 Jul 2020 14:49:47 -0400</pubDate>
+      
+      <guid>https://0xack13.github.io/posts/minikube-vmware-fusion/</guid>
+      <description>Minikube can be installed and uses vmware fusion as a driver to virtualize Minikube:
+To install the vmware driver:
+brew install docker-machine-driver-vmware Then, we can easily install minikube along wih starting minikube with vmware driver:
+brew install minikube minikube start --driver=vmware </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -6,9 +6,73 @@
     <description>Recent content in Tags on 0xack13 - Terminal Adventures..</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Sun, 26 Jul 2020 14:49:47 -0400</lastBuildDate>
     
 	<atom:link href="https://0xack13.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>darwin</title>
+      <link>https://0xack13.github.io/tags/darwin/</link>
+      <pubDate>Sun, 26 Jul 2020 14:49:47 -0400</pubDate>
+      
+      <guid>https://0xack13.github.io/tags/darwin/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>fusion</title>
+      <link>https://0xack13.github.io/tags/fusion/</link>
+      <pubDate>Sun, 26 Jul 2020 14:49:47 -0400</pubDate>
+      
+      <guid>https://0xack13.github.io/tags/fusion/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vmware</title>
+      <link>https://0xack13.github.io/tags/vmware/</link>
+      <pubDate>Sun, 26 Jul 2020 14:49:47 -0400</pubDate>
+      
+      <guid>https://0xack13.github.io/tags/vmware/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>code</title>
+      <link>https://0xack13.github.io/tags/code/</link>
+      <pubDate>Wed, 24 Oct 2018 21:20:42 +1100</pubDate>
+      
+      <guid>https://0xack13.github.io/tags/code/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>content</title>
+      <link>https://0xack13.github.io/tags/content/</link>
+      <pubDate>Wed, 24 Oct 2018 21:20:42 +1100</pubDate>
+      
+      <guid>https://0xack13.github.io/tags/content/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hugo</title>
+      <link>https://0xack13.github.io/tags/hugo/</link>
+      <pubDate>Wed, 24 Oct 2018 21:20:42 +1100</pubDate>
+      
+      <guid>https://0xack13.github.io/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>static site generator</title>
+      <link>https://0xack13.github.io/tags/static-site-generator/</link>
+      <pubDate>Wed, 24 Oct 2018 21:20:42 +1100</pubDate>
+      
+      <guid>https://0xack13.github.io/tags/static-site-generator/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>

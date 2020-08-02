@@ -1,214 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  
-    <title>Azure Devops Ssh Tasks :: 0xack13 - Terminal Adventures.. — A simple, retro theme for Hugo</title>
-  
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="I took me some time to figure out that there is a difference in the type of the supported SSH keys in the task SSH to run a shell command or to copy files over SSH. It turns out that copy files over SSH supports PEM files which can be generated using the following command:
-[azure@remotelinux ~]$ ssh-keygen -t rsa -m PEM Using the generated private key, add the information to the Service Connections in the Project Settings." />
-<meta name="keywords" content="" />
-<meta name="robots" content="noodp" />
-<link rel="canonical" href="https://0xack13.github.io/posts/azure-devops-ssh-tasks/" />
 
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="en">
 
+    
+    <meta name="description" content="I took me some time to figure out that there is a difference in the type of the supported SSH keys in the task SSH to run a shell command or to copy files over SSH. It turns out that copy files over SSH supports PEM files which can be generated using the following command:
+[azure@remotelinux ~]$ ssh-keygen -t rsa -m PEM Using the generated private key, add the information to the Service Connections in the Project Settings.">
+    <meta name="keywords" content="">
 
+    
 
-<link rel="stylesheet" href="https://0xack13.github.io/assets/style.css">
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Azure Devops Ssh Tasks"/>
+<meta name="twitter:description" content="I took me some time to figure out that there is a difference in the type of the supported SSH keys in the task SSH to run a shell command or to copy files over SSH. It turns out that copy files over SSH supports PEM files which can be generated using the following command:
+[azure@remotelinux ~]$ ssh-keygen -t rsa -m PEM Using the generated private key, add the information to the Service Connections in the Project Settings."/>
 
-  <link rel="stylesheet" href="https://0xack13.github.io/assets/pink.css">
-
-
-
-
-
-
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://0xack13.github.io/img/apple-touch-icon-144-precomposed.png">
-
-  <link rel="shortcut icon" href="https://0xack13.github.io/img/favicon/pink.png">
-
-
-
-<meta name="twitter:card" content="summary" />
-
-  <meta name="twitter:site" content="" />
-
-<meta name="twitter:creator" content="" />
-
-
-<meta property="og:locale" content="en" />
-<meta property="og:type" content="article" />
-<meta property="og:title" content="Azure Devops Ssh Tasks :: 0xack13 - Terminal Adventures..">
+    <meta property="og:title" content="Azure Devops Ssh Tasks" />
 <meta property="og:description" content="I took me some time to figure out that there is a difference in the type of the supported SSH keys in the task SSH to run a shell command or to copy files over SSH. It turns out that copy files over SSH supports PEM files which can be generated using the following command:
 [azure@remotelinux ~]$ ssh-keygen -t rsa -m PEM Using the generated private key, add the information to the Service Connections in the Project Settings." />
+<meta property="og:type" content="article" />
 <meta property="og:url" content="https://0xack13.github.io/posts/azure-devops-ssh-tasks/" />
-<meta property="og:site_name" content="Azure Devops Ssh Tasks" />
-
-  
-    <meta property="og:image" content="https://0xack13.github.io/img/favicon/pink.png">
-  
-
-<meta property="og:image:width" content="2048">
-<meta property="og:image:height" content="1024">
+<meta property="article:published_time" content="2019-06-26T14:49:47-04:00" />
+<meta property="article:modified_time" content="2019-06-26T14:49:47-04:00" /><meta property="og:site_name" content="0xack13 - Terminal Adventures.." />
 
 
-  <meta property="article:published_time" content="2019-06-26 14:49:47 -0400 -0400" />
-
-
-
-
-
-
-
-
-
-
-
-
-</head>
-<body class="">
-
-
-<div class="container center headings--one-size">
-
-  <header class="header">
-  <div class="header__inner">
-    <div class="header__logo">
-      <a href="/">
-  <div class="logo">
-    0xack13 - Terminal Adventures
-  </div>
-</a>
-
-    </div>
-    <div class="menu-trigger">menu</div>
-  </div>
-  
-    <nav class="menu">
-  <ul class="menu__inner menu__inner--desktop">
     
+      <base href="https://0xack13.github.io/posts/azure-devops-ssh-tasks/">
+    
+    <title>
+  Azure Devops Ssh Tasks · 0xack13 - Terminal Adventures..
+</title>
+
+    
+      <link rel="canonical" href="https://0xack13.github.io/posts/azure-devops-ssh-tasks/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://0xack13.github.io/css/coder.min.3219ef62ae52679b7a9c19043171c3cd9f523628c2a65f3ef247ee18836bc90b.css" integrity="sha256-MhnvYq5SZ5t6nBkEMXHDzZ9SNijCpl8&#43;8kfuGINryQs=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://0xack13.github.io/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://0xack13.github.io/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.74.3" />
+  </head>
+
+  
+  
+  <body class="colorscheme-light"
+        onload=""
+  >
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://0xack13.github.io/">
+      0xack13 - Terminal Adventures..
+    </a>
+    
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
       
         
-          <li><a href="/about">About</a></li>
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://0xack13.github.io/about">About</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://0xack13.github.io/posts">Posts</a>
+          </li>
         
       
       
+    </ul>
     
-
-    
-  </ul>
-
-  <ul class="menu__inner menu__inner--mobile">
-    
-      
-        <li><a href="/about">About</a></li>
-      
-    
-    
-  </ul>
+  </section>
 </nav>
 
-  
-</header>
 
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Azure Devops Ssh Tasks</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2019-06-26T14:49:47-04:00'>
+                June 26, 2019
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              One-minute read
+            </span>
+          </div>
+          
+          
+        </div>
+      </header>
 
-  <div class="content">
-    
-<div class="post">
-  <h1 class="post-title">
-    <a href="https://0xack13.github.io/posts/azure-devops-ssh-tasks/">Azure Devops Ssh Tasks</a></h1>
-  <div class="post-meta">
-    
-      <span class="post-date">
-        2019-06-26 
-      </span>
-    
-    
-  </div>
-
-  
-
-  
-
-  
-
-  <div class="post-content"><div>
+      <div>
+        
         <p>I took me some time to figure out that there is a difference in the type of the supported SSH keys in the task SSH to run a shell command or to copy files over SSH. It turns out that copy files over SSH supports PEM files which can be generated using the following command:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>azure@remotelinux ~<span style="color:#f92672">]</span>$ ssh-keygen -t rsa -m PEM
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">[azure@remotelinux ~]$ ssh-keygen -t rsa -m PEM
 </code></pre></div><p>Using the generated private key, add the information to the <code>Service Connections</code> in the <code>Project Settings</code>.</p>
 <p>The task should look like the below:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">- task: CopyFilesOverSSH@0
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">- task: CopyFilesOverSSH@0
   inputs:
-    sshEndpoint: <span style="color:#e6db74">&#39;azurevm&#39;</span>
-    sourceFolder: <span style="color:#e6db74">&#39;$(Agent.BuildDirectory)&#39;</span>
-    contents: <span style="color:#e6db74">&#39;**&#39;</span>
-    targetFolder: <span style="color:#e6db74">&#39;/home/azure&#39;</span>
+    sshEndpoint: <span style="color:#0086d2">&#39;azurevm&#39;</span>
+    sourceFolder: <span style="color:#0086d2">&#39;$(Agent.BuildDirectory)&#39;</span>
+    contents: <span style="color:#0086d2">&#39;**&#39;</span>
+    targetFolder: <span style="color:#0086d2">&#39;/home/azure&#39;</span>
 </code></pre></div><p>The SSH task to execute shell commands support default types of OpenSSH private keys which don&rsquo;t necessiraly have to be PEM files. It&rsquo;s also worth mentioning that the PEM files are support by the SSH tasks to execute shell commands. So it&rsquo;s safe to say that you can also use PEM files for any SSH tasks.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">- task: SSH@0
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">- task: SSH@0
   inputs:
-    sshEndpoint: <span style="color:#e6db74">&#39;azurevm&#39;</span>
-    runOptions: <span style="color:#e6db74">&#39;commands&#39;</span>
-    commands: <span style="color:#e6db74">&#39;ls -alt&#39;</span>
+    sshEndpoint: <span style="color:#0086d2">&#39;azurevm&#39;</span>
+    runOptions: <span style="color:#0086d2">&#39;commands&#39;</span>
+    commands: <span style="color:#0086d2">&#39;ls -alt&#39;</span>
 </code></pre></div>
-      </div></div>
-
-  
-  
-<div class="pagination">
-    <div class="pagination__title">
-        <span class="pagination__title-h">Read other posts</span>
-        <hr />
-    </div>
-    <div class="pagination__buttons">
-        
-        <span class="button previous">
-            <a href="https://0xack13.github.io/posts/python-notes/">
-                <span class="button__icon">←</span>
-                <span class="button__text">Python Notes</span>
-            </a>
-        </span>
-        
-        
-        <span class="button next">
-            <a href="https://0xack13.github.io/posts/dockerizing-aspnet-core-app/">
-                <span class="button__text">Dockerizing Aspnet Core App</span>
-                <span class="button__icon">→</span>
-            </a>
-        </span>
-        
-    </div>
-</div>
-
-  
-
-  
-
-</div>
-
-  </div>
-
-  
-    <footer class="footer">
-  <div class="footer__inner">
-    
-      <div class="copyright">
-        <span>© 2020 Powered by <a href="http://gohugo.io">Hugo</a></span>
-    
-        <span>:: Theme made by <a href="https://twitter.com/panr">panr</a></span>
       </div>
-  </div>
-</footer>
-
-<script src="https://0xack13.github.io/assets/main.js"></script>
-<script src="https://0xack13.github.io/assets/prism.js"></script>
 
 
+      <footer>
+        
 
 
+        
+        
+        
+      </footer>
+    </article>
 
-  
-</div>
+    
+  </section>
 
-</body>
+      </div>
+
+      
+  <footer class="footer">
+    <section class="container">
+      
+      
+        ©
+        
+        2020
+        
+      
+      
+         · 
+        Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+      
+      
+    </section>
+  </footer>
+
+    </main>
+
+    
+
+    
+
+    
+
+  </body>
+
 </html>

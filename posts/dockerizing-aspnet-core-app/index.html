@@ -1,351 +1,326 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  
-    <title>Dockerizing Aspnet Core App :: 0xack13 - Terminal Adventures.. — A simple, retro theme for Hugo</title>
-  
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Assuming that you have the correct docker environment, asp.net core app can run in a container using the following:
-FROMmcr.microsoft.com/dotnet/core/sdk:2.2 AS build-envWORKDIR/app# Copy csproj and restore as distinct layersCOPY *.csproj ./RUN dotnet restore# Copy everything else and buildCOPY . ./RUN dotnet publish -c Release -o out# Build runtime imageFROMmcr.microsoft.com/dotnet/core/aspnet:2.2WORKDIR/appCOPY --from=build-env /app/out .# RUN [&amp;#34;ls -alt&amp;#34;]ENTRYPOINT [&amp;#34;dotnet&amp;#34;, &amp;#34;DemoApp.dll&amp;#34;]% You might have noticed that the docker file in the previous example uses multi-stage builds in docker." />
-<meta name="keywords" content="" />
-<meta name="robots" content="noodp" />
-<link rel="canonical" href="https://0xack13.github.io/posts/dockerizing-aspnet-core-app/" />
 
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="en">
 
+    
+    <meta name="description" content="Assuming that you have the correct docker environment, asp.net core app can run in a container using the following:
+FROMmcr.microsoft.com/dotnet/core/sdk:2.2 AS build-env WORKDIR/app # Copy csproj and restore as distinct layers COPY *.csproj ./ RUN dotnet restore # Copy everything else and build COPY . ./ RUN dotnet publish -c Release -o out # Build runtime image FROMmcr.microsoft.com/dotnet/core/aspnet:2.2 WORKDIR/app COPY --from=build-env /app/out . # RUN [&#34;ls -alt&#34;] ENTRYPOINT [&#34;dotnet&#34;, &#34;DemoApp.dll&#34;]% You might have noticed that the docker file in the previous example uses multi-stage builds in docker.">
+    <meta name="keywords" content="">
 
+    
 
-<link rel="stylesheet" href="https://0xack13.github.io/assets/style.css">
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Dockerizing Aspnet Core App"/>
+<meta name="twitter:description" content="Assuming that you have the correct docker environment, asp.net core app can run in a container using the following:
+FROMmcr.microsoft.com/dotnet/core/sdk:2.2 AS build-env WORKDIR/app # Copy csproj and restore as distinct layers COPY *.csproj ./ RUN dotnet restore # Copy everything else and build COPY . ./ RUN dotnet publish -c Release -o out # Build runtime image FROMmcr.microsoft.com/dotnet/core/aspnet:2.2 WORKDIR/app COPY --from=build-env /app/out . # RUN [&#34;ls -alt&#34;] ENTRYPOINT [&#34;dotnet&#34;, &#34;DemoApp.dll&#34;]% You might have noticed that the docker file in the previous example uses multi-stage builds in docker."/>
 
-  <link rel="stylesheet" href="https://0xack13.github.io/assets/pink.css">
-
-
-
-
-
-
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://0xack13.github.io/img/apple-touch-icon-144-precomposed.png">
-
-  <link rel="shortcut icon" href="https://0xack13.github.io/img/favicon/pink.png">
-
-
-
-<meta name="twitter:card" content="summary" />
-
-  <meta name="twitter:site" content="" />
-
-<meta name="twitter:creator" content="" />
-
-
-<meta property="og:locale" content="en" />
-<meta property="og:type" content="article" />
-<meta property="og:title" content="Dockerizing Aspnet Core App :: 0xack13 - Terminal Adventures..">
+    <meta property="og:title" content="Dockerizing Aspnet Core App" />
 <meta property="og:description" content="Assuming that you have the correct docker environment, asp.net core app can run in a container using the following:
-FROMmcr.microsoft.com/dotnet/core/sdk:2.2 AS build-envWORKDIR/app# Copy csproj and restore as distinct layersCOPY *.csproj ./RUN dotnet restore# Copy everything else and buildCOPY . ./RUN dotnet publish -c Release -o out# Build runtime imageFROMmcr.microsoft.com/dotnet/core/aspnet:2.2WORKDIR/appCOPY --from=build-env /app/out .# RUN [&amp;#34;ls -alt&amp;#34;]ENTRYPOINT [&amp;#34;dotnet&amp;#34;, &amp;#34;DemoApp.dll&amp;#34;]% You might have noticed that the docker file in the previous example uses multi-stage builds in docker." />
+FROMmcr.microsoft.com/dotnet/core/sdk:2.2 AS build-env WORKDIR/app # Copy csproj and restore as distinct layers COPY *.csproj ./ RUN dotnet restore # Copy everything else and build COPY . ./ RUN dotnet publish -c Release -o out # Build runtime image FROMmcr.microsoft.com/dotnet/core/aspnet:2.2 WORKDIR/app COPY --from=build-env /app/out . # RUN [&#34;ls -alt&#34;] ENTRYPOINT [&#34;dotnet&#34;, &#34;DemoApp.dll&#34;]% You might have noticed that the docker file in the previous example uses multi-stage builds in docker." />
+<meta property="og:type" content="article" />
 <meta property="og:url" content="https://0xack13.github.io/posts/dockerizing-aspnet-core-app/" />
-<meta property="og:site_name" content="Dockerizing Aspnet Core App" />
-
-  
-    <meta property="og:image" content="https://0xack13.github.io/img/favicon/pink.png">
-  
-
-<meta property="og:image:width" content="2048">
-<meta property="og:image:height" content="1024">
+<meta property="article:published_time" content="2019-06-26T06:56:18-04:00" />
+<meta property="article:modified_time" content="2019-06-26T06:56:18-04:00" /><meta property="og:site_name" content="0xack13 - Terminal Adventures.." />
 
 
-  <meta property="article:published_time" content="2019-06-26 06:56:18 -0400 -0400" />
-
-
-
-
-
-
-
-
-
-
-
-
-</head>
-<body class="">
-
-
-<div class="container center headings--one-size">
-
-  <header class="header">
-  <div class="header__inner">
-    <div class="header__logo">
-      <a href="/">
-  <div class="logo">
-    0xack13 - Terminal Adventures
-  </div>
-</a>
-
-    </div>
-    <div class="menu-trigger">menu</div>
-  </div>
-  
-    <nav class="menu">
-  <ul class="menu__inner menu__inner--desktop">
     
+      <base href="https://0xack13.github.io/posts/dockerizing-aspnet-core-app/">
+    
+    <title>
+  Dockerizing Aspnet Core App · 0xack13 - Terminal Adventures..
+</title>
+
+    
+      <link rel="canonical" href="https://0xack13.github.io/posts/dockerizing-aspnet-core-app/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://0xack13.github.io/css/coder.min.3219ef62ae52679b7a9c19043171c3cd9f523628c2a65f3ef247ee18836bc90b.css" integrity="sha256-MhnvYq5SZ5t6nBkEMXHDzZ9SNijCpl8&#43;8kfuGINryQs=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://0xack13.github.io/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://0xack13.github.io/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.74.3" />
+  </head>
+
+  
+  
+  <body class="colorscheme-light"
+        onload=""
+  >
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://0xack13.github.io/">
+      0xack13 - Terminal Adventures..
+    </a>
+    
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
       
         
-          <li><a href="/about">About</a></li>
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://0xack13.github.io/about">About</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://0xack13.github.io/posts">Posts</a>
+          </li>
         
       
       
+    </ul>
     
-
-    
-  </ul>
-
-  <ul class="menu__inner menu__inner--mobile">
-    
-      
-        <li><a href="/about">About</a></li>
-      
-    
-    
-  </ul>
+  </section>
 </nav>
 
-  
-</header>
 
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Dockerizing Aspnet Core App</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2019-06-26T06:56:18-04:00'>
+                June 26, 2019
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              2-minute read
+            </span>
+          </div>
+          
+          
+        </div>
+      </header>
 
-  <div class="content">
-    
-<div class="post">
-  <h1 class="post-title">
-    <a href="https://0xack13.github.io/posts/dockerizing-aspnet-core-app/">Dockerizing Aspnet Core App</a></h1>
-  <div class="post-meta">
-    
-      <span class="post-date">
-        2019-06-26 
-      </span>
-    
-    
-  </div>
-
-  
-
-  
-
-  
-
-  <div class="post-content"><div>
+      <div>
+        
         <p>Assuming that you have the correct docker environment, asp.net core app can run in a container using the following:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-docker" data-lang="docker"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> mcr.microsoft.com/dotnet/core/sdk:2.2 AS build-env</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">WORKDIR</span><span style="color:#e6db74"> /app</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Copy csproj and restore as distinct layers</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> *.csproj ./<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> dotnet restore<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Copy everything else and build</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> . ./<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> dotnet publish -c Release -o out<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Build runtime image</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> mcr.microsoft.com/dotnet/core/aspnet:2.2</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">WORKDIR</span><span style="color:#e6db74"> /app</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> --from<span style="color:#f92672">=</span>build-env /app/out .<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># RUN [&#34;ls -alt&#34;]</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENTRYPOINT</span> [<span style="color:#e6db74">&#34;dotnet&#34;</span>, <span style="color:#e6db74">&#34;DemoApp.dll&#34;</span>]%</code></pre></div>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-docker" data-lang="docker"><span style="color:#fb660a;font-weight:bold">FROM</span><span style="color:#0086d2"> mcr.microsoft.com/dotnet/core/sdk:2.2 AS build-env</span>
+<span style="color:#fb660a;font-weight:bold">WORKDIR</span><span style="color:#0086d2"> /app</span>
+<span style="color:#080;background-color:#0f140f;font-style:italic"># Copy csproj and restore as distinct layers</span>
+<span style="color:#fb660a;font-weight:bold">COPY</span> *.csproj ./
+<span style="color:#fb660a;font-weight:bold">RUN</span> dotnet restore
+<span style="color:#080;background-color:#0f140f;font-style:italic"># Copy everything else and build</span>
+<span style="color:#fb660a;font-weight:bold">COPY</span> . ./
+<span style="color:#fb660a;font-weight:bold">RUN</span> dotnet publish -c Release -o out
+<span style="color:#080;background-color:#0f140f;font-style:italic"># Build runtime image</span>
+<span style="color:#fb660a;font-weight:bold">FROM</span><span style="color:#0086d2"> mcr.microsoft.com/dotnet/core/aspnet:2.2</span>
+<span style="color:#fb660a;font-weight:bold">WORKDIR</span><span style="color:#0086d2"> /app</span>
+<span style="color:#fb660a;font-weight:bold">COPY</span> --from=build-env /app/out .
+<span style="color:#080;background-color:#0f140f;font-style:italic"># RUN [&#34;ls -alt&#34;]</span>
+<span style="color:#fb660a;font-weight:bold">ENTRYPOINT</span> [<span style="color:#0086d2">&#34;dotnet&#34;</span>, <span style="color:#0086d2">&#34;DemoApp.dll&#34;</span>]%</code></pre></div>
 <p>You might have noticed that the docker file in the previous example uses <a href="https://docs.docker.com/develop/develop-images/multistage-build/">multi-stage builds</a> in docker.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Docker" data-lang="Docker"><span style="color:#75715e"># Stage #1</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> mcr.microsoft.com/dotnet/core/sdk:2.2 AS build-env</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span>...<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Stage #2</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> mcr.microsoft.com/dotnet/core/aspnet:2.2</span><span style="color:#960050;background-color:#1e0010">
-</span></code></pre></div><p>The container can be run using the following:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker run -d -p 80:80 --name app aspnetapp
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Docker" data-lang="Docker"><span style="color:#080;background-color:#0f140f;font-style:italic"># Stage #1</span>
+<span style="color:#fb660a;font-weight:bold">FROM</span><span style="color:#0086d2"> mcr.microsoft.com/dotnet/core/sdk:2.2 AS build-env</span>
+...
+
+<span style="color:#080;background-color:#0f140f;font-style:italic"># Stage #2</span>
+<span style="color:#fb660a;font-weight:bold">FROM</span><span style="color:#0086d2"> mcr.microsoft.com/dotnet/core/aspnet:2.2</span>
+</code></pre></div><p>The container can be run using the following:</p>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker run -d -p 80:80 --name app aspnetapp
 </code></pre></div><p>In case, Spring Boot is being used:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-docker" data-lang="docker"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> openjdk:8-jdk-alpine</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">VOLUME</span><span style="color:#e6db74"> /tmp</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ARG</span> JAR_FILE<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># COPY ./target/gs-spring-boot-docker-0.1.0.jar app.jar</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> <span style="color:#e6db74">${</span>JAR_FILE<span style="color:#e6db74">}</span> app.jar<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENTRYPOINT</span> [<span style="color:#e6db74">&#34;java&#34;</span>,<span style="color:#e6db74">&#34;-Djava.security.egd=file:/dev/./urandom&#34;</span>,<span style="color:#e6db74">&#34;-jar&#34;</span>,<span style="color:#e6db74">&#34;/app.jar&#34;</span>]</code></pre></div>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-docker" data-lang="docker"><span style="color:#fb660a;font-weight:bold">FROM</span><span style="color:#0086d2"> openjdk:8-jdk-alpine</span>
+<span style="color:#fb660a;font-weight:bold">VOLUME</span><span style="color:#0086d2"> /tmp</span>
+<span style="color:#fb660a;font-weight:bold">ARG</span> JAR_FILE
+<span style="color:#080;background-color:#0f140f;font-style:italic"># COPY ./target/gs-spring-boot-docker-0.1.0.jar app.jar</span>
+<span style="color:#fb660a;font-weight:bold">COPY</span> <span style="color:#0086d2">${</span><span style="color:#fb660a">JAR_FILE</span><span style="color:#0086d2">}</span> app.jar
+<span style="color:#fb660a;font-weight:bold">ENTRYPOINT</span> [<span style="color:#0086d2">&#34;java&#34;</span>,<span style="color:#0086d2">&#34;-Djava.security.egd=file:/dev/./urandom&#34;</span>,<span style="color:#0086d2">&#34;-jar&#34;</span>,<span style="color:#0086d2">&#34;/app.jar&#34;</span>]</code></pre></div>
 <p>The following java <code>pom.xml</code> file can be used:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
-<span style="color:#f92672">&lt;project</span> <span style="color:#a6e22e">xmlns=</span><span style="color:#e6db74">&#34;http://maven.apache.org/POM/4.0.0&#34;</span> <span style="color:#a6e22e">xmlns:xsi=</span><span style="color:#e6db74">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
-    <span style="color:#a6e22e">xsi:schemaLocation=</span><span style="color:#e6db74">&#34;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&#34;</span><span style="color:#f92672">&gt;</span>
-    <span style="color:#f92672">&lt;modelVersion&gt;</span>4.0.0<span style="color:#f92672">&lt;/modelVersion&gt;</span>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#ff0007;background-color:#0f140f;font-weight:bold;font-style:italic">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+<span style="color:#fb660a;font-weight:bold">&lt;project</span> <span style="color:#ff0086;font-weight:bold">xmlns=</span><span style="color:#0086d2">&#34;http://maven.apache.org/POM/4.0.0&#34;</span> <span style="color:#ff0086;font-weight:bold">xmlns:xsi=</span><span style="color:#0086d2">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
+    <span style="color:#ff0086;font-weight:bold">xsi:schemaLocation=</span><span style="color:#0086d2">&#34;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&#34;</span><span style="color:#fb660a;font-weight:bold">&gt;</span>
+    <span style="color:#fb660a;font-weight:bold">&lt;modelVersion&gt;</span>4.0.0<span style="color:#fb660a;font-weight:bold">&lt;/modelVersion&gt;</span>
 
-    <span style="color:#f92672">&lt;groupId&gt;</span>org.springframework<span style="color:#f92672">&lt;/groupId&gt;</span>
-    <span style="color:#f92672">&lt;artifactId&gt;</span>gs-spring-boot-docker<span style="color:#f92672">&lt;/artifactId&gt;</span>
-    <span style="color:#f92672">&lt;version&gt;</span>0.1.0<span style="color:#f92672">&lt;/version&gt;</span>
+    <span style="color:#fb660a;font-weight:bold">&lt;groupId&gt;</span>org.springframework<span style="color:#fb660a;font-weight:bold">&lt;/groupId&gt;</span>
+    <span style="color:#fb660a;font-weight:bold">&lt;artifactId&gt;</span>gs-spring-boot-docker<span style="color:#fb660a;font-weight:bold">&lt;/artifactId&gt;</span>
+    <span style="color:#fb660a;font-weight:bold">&lt;version&gt;</span>0.1.0<span style="color:#fb660a;font-weight:bold">&lt;/version&gt;</span>
 
-    <span style="color:#f92672">&lt;parent&gt;</span>
-        <span style="color:#f92672">&lt;groupId&gt;</span>org.springframework.boot<span style="color:#f92672">&lt;/groupId&gt;</span>
-        <span style="color:#f92672">&lt;artifactId&gt;</span>spring-boot-starter-parent<span style="color:#f92672">&lt;/artifactId&gt;</span>
-        <span style="color:#f92672">&lt;version&gt;</span>2.1.6.RELEASE<span style="color:#f92672">&lt;/version&gt;</span>
-    <span style="color:#f92672">&lt;/parent&gt;</span>
+    <span style="color:#fb660a;font-weight:bold">&lt;parent&gt;</span>
+        <span style="color:#fb660a;font-weight:bold">&lt;groupId&gt;</span>org.springframework.boot<span style="color:#fb660a;font-weight:bold">&lt;/groupId&gt;</span>
+        <span style="color:#fb660a;font-weight:bold">&lt;artifactId&gt;</span>spring-boot-starter-parent<span style="color:#fb660a;font-weight:bold">&lt;/artifactId&gt;</span>
+        <span style="color:#fb660a;font-weight:bold">&lt;version&gt;</span>2.1.6.RELEASE<span style="color:#fb660a;font-weight:bold">&lt;/version&gt;</span>
+    <span style="color:#fb660a;font-weight:bold">&lt;/parent&gt;</span>
 
-    <span style="color:#f92672">&lt;properties&gt;</span>
-        <span style="color:#f92672">&lt;java.version&gt;</span>1.8<span style="color:#f92672">&lt;/java.version&gt;</span>
-        <span style="color:#f92672">&lt;docker.image.prefix&gt;</span>springio<span style="color:#f92672">&lt;/docker.image.prefix&gt;</span>
-    <span style="color:#f92672">&lt;/properties&gt;</span>
+    <span style="color:#fb660a;font-weight:bold">&lt;properties&gt;</span>
+        <span style="color:#fb660a;font-weight:bold">&lt;java.version&gt;</span>1.8<span style="color:#fb660a;font-weight:bold">&lt;/java.version&gt;</span>
+        <span style="color:#fb660a;font-weight:bold">&lt;docker.image.prefix&gt;</span>springio<span style="color:#fb660a;font-weight:bold">&lt;/docker.image.prefix&gt;</span>
+    <span style="color:#fb660a;font-weight:bold">&lt;/properties&gt;</span>
 
-    <span style="color:#f92672">&lt;dependencies&gt;</span>
-        <span style="color:#f92672">&lt;dependency&gt;</span>
-            <span style="color:#f92672">&lt;groupId&gt;</span>org.springframework.boot<span style="color:#f92672">&lt;/groupId&gt;</span>
-            <span style="color:#f92672">&lt;artifactId&gt;</span>spring-boot-starter-web<span style="color:#f92672">&lt;/artifactId&gt;</span>
-        <span style="color:#f92672">&lt;/dependency&gt;</span>
-        <span style="color:#f92672">&lt;dependency&gt;</span>
-            <span style="color:#f92672">&lt;groupId&gt;</span>org.springframework.boot<span style="color:#f92672">&lt;/groupId&gt;</span>
-            <span style="color:#f92672">&lt;artifactId&gt;</span>spring-boot-starter-test<span style="color:#f92672">&lt;/artifactId&gt;</span>
-            <span style="color:#f92672">&lt;scope&gt;</span>test<span style="color:#f92672">&lt;/scope&gt;</span>
-        <span style="color:#f92672">&lt;/dependency&gt;</span>
-    <span style="color:#f92672">&lt;/dependencies&gt;</span>
+    <span style="color:#fb660a;font-weight:bold">&lt;dependencies&gt;</span>
+        <span style="color:#fb660a;font-weight:bold">&lt;dependency&gt;</span>
+            <span style="color:#fb660a;font-weight:bold">&lt;groupId&gt;</span>org.springframework.boot<span style="color:#fb660a;font-weight:bold">&lt;/groupId&gt;</span>
+            <span style="color:#fb660a;font-weight:bold">&lt;artifactId&gt;</span>spring-boot-starter-web<span style="color:#fb660a;font-weight:bold">&lt;/artifactId&gt;</span>
+        <span style="color:#fb660a;font-weight:bold">&lt;/dependency&gt;</span>
+        <span style="color:#fb660a;font-weight:bold">&lt;dependency&gt;</span>
+            <span style="color:#fb660a;font-weight:bold">&lt;groupId&gt;</span>org.springframework.boot<span style="color:#fb660a;font-weight:bold">&lt;/groupId&gt;</span>
+            <span style="color:#fb660a;font-weight:bold">&lt;artifactId&gt;</span>spring-boot-starter-test<span style="color:#fb660a;font-weight:bold">&lt;/artifactId&gt;</span>
+            <span style="color:#fb660a;font-weight:bold">&lt;scope&gt;</span>test<span style="color:#fb660a;font-weight:bold">&lt;/scope&gt;</span>
+        <span style="color:#fb660a;font-weight:bold">&lt;/dependency&gt;</span>
+    <span style="color:#fb660a;font-weight:bold">&lt;/dependencies&gt;</span>
 
 
-    <span style="color:#f92672">&lt;build&gt;</span>
-        <span style="color:#f92672">&lt;plugins&gt;</span>
-            <span style="color:#f92672">&lt;plugin&gt;</span>
-                <span style="color:#f92672">&lt;groupId&gt;</span>org.springframework.boot<span style="color:#f92672">&lt;/groupId&gt;</span>
-                <span style="color:#f92672">&lt;artifactId&gt;</span>spring-boot-maven-plugin<span style="color:#f92672">&lt;/artifactId&gt;</span>
-            <span style="color:#f92672">&lt;/plugin&gt;</span>
-            <span style="color:#f92672">&lt;plugin&gt;</span>
-            <span style="color:#f92672">&lt;groupId&gt;</span>com.spotify<span style="color:#f92672">&lt;/groupId&gt;</span>
-            <span style="color:#f92672">&lt;artifactId&gt;</span>dockerfile-maven-plugin<span style="color:#f92672">&lt;/artifactId&gt;</span>
-            <span style="color:#f92672">&lt;version&gt;</span>1.4.9<span style="color:#f92672">&lt;/version&gt;</span>
-            <span style="color:#f92672">&lt;configuration&gt;</span>
-                <span style="color:#f92672">&lt;repository&gt;</span>${docker.image.prefix}/${project.artifactId}<span style="color:#f92672">&lt;/repository&gt;</span>
-                <span style="color:#f92672">&lt;buildArgs&gt;</span>
-                        <span style="color:#f92672">&lt;JAR_FILE&gt;</span>${project.build.finalName}.jar<span style="color:#f92672">&lt;/JAR_FILE&gt;</span>
-                <span style="color:#f92672">&lt;/buildArgs&gt;</span>
-            <span style="color:#f92672">&lt;/configuration&gt;</span>
-        <span style="color:#f92672">&lt;/plugin&gt;</span>
-        <span style="color:#f92672">&lt;plugin&gt;</span>
-    <span style="color:#f92672">&lt;groupId&gt;</span>org.apache.maven.plugins<span style="color:#f92672">&lt;/groupId&gt;</span>
-    <span style="color:#f92672">&lt;artifactId&gt;</span>maven-dependency-plugin<span style="color:#f92672">&lt;/artifactId&gt;</span>
-    <span style="color:#f92672">&lt;executions&gt;</span>
-        <span style="color:#f92672">&lt;execution&gt;</span>
-            <span style="color:#f92672">&lt;id&gt;</span>unpack<span style="color:#f92672">&lt;/id&gt;</span>
-            <span style="color:#f92672">&lt;phase&gt;</span>package<span style="color:#f92672">&lt;/phase&gt;</span>
-            <span style="color:#f92672">&lt;goals&gt;</span>
-                <span style="color:#f92672">&lt;goal&gt;</span>unpack<span style="color:#f92672">&lt;/goal&gt;</span>
-            <span style="color:#f92672">&lt;/goals&gt;</span>
-            <span style="color:#f92672">&lt;configuration&gt;</span>
-                <span style="color:#f92672">&lt;artifactItems&gt;</span>
-                    <span style="color:#f92672">&lt;artifactItem&gt;</span>
-                        <span style="color:#f92672">&lt;groupId&gt;</span>${project.groupId}<span style="color:#f92672">&lt;/groupId&gt;</span>
-                        <span style="color:#f92672">&lt;artifactId&gt;</span>${project.artifactId}<span style="color:#f92672">&lt;/artifactId&gt;</span>
-                        <span style="color:#f92672">&lt;version&gt;</span>${project.version}<span style="color:#f92672">&lt;/version&gt;</span>
-                    <span style="color:#f92672">&lt;/artifactItem&gt;</span>
-                <span style="color:#f92672">&lt;/artifactItems&gt;</span>
-            <span style="color:#f92672">&lt;/configuration&gt;</span>
-        <span style="color:#f92672">&lt;/execution&gt;</span>
-    <span style="color:#f92672">&lt;/executions&gt;</span>
-<span style="color:#f92672">&lt;/plugin&gt;</span>
-        <span style="color:#f92672">&lt;/plugins&gt;</span>
-    <span style="color:#f92672">&lt;/build&gt;</span>
+    <span style="color:#fb660a;font-weight:bold">&lt;build&gt;</span>
+        <span style="color:#fb660a;font-weight:bold">&lt;plugins&gt;</span>
+            <span style="color:#fb660a;font-weight:bold">&lt;plugin&gt;</span>
+                <span style="color:#fb660a;font-weight:bold">&lt;groupId&gt;</span>org.springframework.boot<span style="color:#fb660a;font-weight:bold">&lt;/groupId&gt;</span>
+                <span style="color:#fb660a;font-weight:bold">&lt;artifactId&gt;</span>spring-boot-maven-plugin<span style="color:#fb660a;font-weight:bold">&lt;/artifactId&gt;</span>
+            <span style="color:#fb660a;font-weight:bold">&lt;/plugin&gt;</span>
+            <span style="color:#fb660a;font-weight:bold">&lt;plugin&gt;</span>
+            <span style="color:#fb660a;font-weight:bold">&lt;groupId&gt;</span>com.spotify<span style="color:#fb660a;font-weight:bold">&lt;/groupId&gt;</span>
+            <span style="color:#fb660a;font-weight:bold">&lt;artifactId&gt;</span>dockerfile-maven-plugin<span style="color:#fb660a;font-weight:bold">&lt;/artifactId&gt;</span>
+            <span style="color:#fb660a;font-weight:bold">&lt;version&gt;</span>1.4.9<span style="color:#fb660a;font-weight:bold">&lt;/version&gt;</span>
+            <span style="color:#fb660a;font-weight:bold">&lt;configuration&gt;</span>
+                <span style="color:#fb660a;font-weight:bold">&lt;repository&gt;</span>${docker.image.prefix}/${project.artifactId}<span style="color:#fb660a;font-weight:bold">&lt;/repository&gt;</span>
+                <span style="color:#fb660a;font-weight:bold">&lt;buildArgs&gt;</span>
+                        <span style="color:#fb660a;font-weight:bold">&lt;JAR_FILE&gt;</span>${project.build.finalName}.jar<span style="color:#fb660a;font-weight:bold">&lt;/JAR_FILE&gt;</span>
+                <span style="color:#fb660a;font-weight:bold">&lt;/buildArgs&gt;</span>
+            <span style="color:#fb660a;font-weight:bold">&lt;/configuration&gt;</span>
+        <span style="color:#fb660a;font-weight:bold">&lt;/plugin&gt;</span>
+        <span style="color:#fb660a;font-weight:bold">&lt;plugin&gt;</span>
+    <span style="color:#fb660a;font-weight:bold">&lt;groupId&gt;</span>org.apache.maven.plugins<span style="color:#fb660a;font-weight:bold">&lt;/groupId&gt;</span>
+    <span style="color:#fb660a;font-weight:bold">&lt;artifactId&gt;</span>maven-dependency-plugin<span style="color:#fb660a;font-weight:bold">&lt;/artifactId&gt;</span>
+    <span style="color:#fb660a;font-weight:bold">&lt;executions&gt;</span>
+        <span style="color:#fb660a;font-weight:bold">&lt;execution&gt;</span>
+            <span style="color:#fb660a;font-weight:bold">&lt;id&gt;</span>unpack<span style="color:#fb660a;font-weight:bold">&lt;/id&gt;</span>
+            <span style="color:#fb660a;font-weight:bold">&lt;phase&gt;</span>package<span style="color:#fb660a;font-weight:bold">&lt;/phase&gt;</span>
+            <span style="color:#fb660a;font-weight:bold">&lt;goals&gt;</span>
+                <span style="color:#fb660a;font-weight:bold">&lt;goal&gt;</span>unpack<span style="color:#fb660a;font-weight:bold">&lt;/goal&gt;</span>
+            <span style="color:#fb660a;font-weight:bold">&lt;/goals&gt;</span>
+            <span style="color:#fb660a;font-weight:bold">&lt;configuration&gt;</span>
+                <span style="color:#fb660a;font-weight:bold">&lt;artifactItems&gt;</span>
+                    <span style="color:#fb660a;font-weight:bold">&lt;artifactItem&gt;</span>
+                        <span style="color:#fb660a;font-weight:bold">&lt;groupId&gt;</span>${project.groupId}<span style="color:#fb660a;font-weight:bold">&lt;/groupId&gt;</span>
+                        <span style="color:#fb660a;font-weight:bold">&lt;artifactId&gt;</span>${project.artifactId}<span style="color:#fb660a;font-weight:bold">&lt;/artifactId&gt;</span>
+                        <span style="color:#fb660a;font-weight:bold">&lt;version&gt;</span>${project.version}<span style="color:#fb660a;font-weight:bold">&lt;/version&gt;</span>
+                    <span style="color:#fb660a;font-weight:bold">&lt;/artifactItem&gt;</span>
+                <span style="color:#fb660a;font-weight:bold">&lt;/artifactItems&gt;</span>
+            <span style="color:#fb660a;font-weight:bold">&lt;/configuration&gt;</span>
+        <span style="color:#fb660a;font-weight:bold">&lt;/execution&gt;</span>
+    <span style="color:#fb660a;font-weight:bold">&lt;/executions&gt;</span>
+<span style="color:#fb660a;font-weight:bold">&lt;/plugin&gt;</span>
+        <span style="color:#fb660a;font-weight:bold">&lt;/plugins&gt;</span>
+    <span style="color:#fb660a;font-weight:bold">&lt;/build&gt;</span>
 
-<span style="color:#f92672">&lt;/project&gt;</span>
+<span style="color:#fb660a;font-weight:bold">&lt;/project&gt;</span>
 
 </code></pre></div><p>Golang can be easily containerized using the following:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-docker" data-lang="docker"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> golang:latest                                                                                  </span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> mkdir /app                                                                                      <span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ADD</span> . /app                                                                                          <span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">WORKDIR</span><span style="color:#e6db74"> /app                                                                                        </span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> go build -o main .                                                                              <span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">CMD</span> [<span style="color:#e6db74">&#34;/app/main&#34;</span>] </code></pre></div>
-<h1 id="react-app---static-html">React App - Static HTML<a href="#react-app---static-html" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-docker" data-lang="docker"><span style="color:#fb660a;font-weight:bold">FROM</span><span style="color:#0086d2"> golang:latest                                                                                  </span>
+<span style="color:#fb660a;font-weight:bold">RUN</span> mkdir /app                                                                                      
+<span style="color:#fb660a;font-weight:bold">ADD</span> . /app                                                                                          
+<span style="color:#fb660a;font-weight:bold">WORKDIR</span><span style="color:#0086d2"> /app                                                                                        </span>
+<span style="color:#fb660a;font-weight:bold">RUN</span> go build -o main .                                                                              
+<span style="color:#fb660a;font-weight:bold">CMD</span> [<span style="color:#0086d2">&#34;/app/main&#34;</span>] </code></pre></div>
+<h1 id="react-app---static-html">React App - Static HTML</h1>
 <p>Containerizing a React App should be a lot easier as we can use Nginx to serve the pages. We will be using WebPack to run Babel transpiler and copy that to our container.</p>
 <p><code>Dockerfile</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Docker" data-lang="Docker"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> node:alpine as build-stage</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">WORKDIR</span><span style="color:#e6db74"> /app</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> package*.json /app/<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> npm install<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> ./ /app/<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> npm run build<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> nginx:1.15</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> --from<span style="color:#f92672">=</span>build-stage /app /usr/share/nginx/html<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> ./nginx.conf /etc/nginx/conf.d/default.conf<span style="color:#960050;background-color:#1e0010">
-</span></code></pre></div><p><code>webpack.config.js</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">path</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;path&#39;</span>)
-<span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> {
-  <span style="color:#a6e22e">entry</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;./src/index.js&#39;</span>,
-  <span style="color:#a6e22e">output</span><span style="color:#f92672">:</span> {
-    <span style="color:#a6e22e">path</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">resolve</span>(<span style="color:#e6db74">&#39;dist&#39;</span>),
-    <span style="color:#a6e22e">filename</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;main.js&#39;</span>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Docker" data-lang="Docker"><span style="color:#fb660a;font-weight:bold">FROM</span><span style="color:#0086d2"> node:alpine as build-stage</span>
+<span style="color:#fb660a;font-weight:bold">WORKDIR</span><span style="color:#0086d2"> /app</span>
+<span style="color:#fb660a;font-weight:bold">COPY</span> package*.json /app/
+<span style="color:#fb660a;font-weight:bold">RUN</span> npm install
+<span style="color:#fb660a;font-weight:bold">COPY</span> ./ /app/
+<span style="color:#fb660a;font-weight:bold">RUN</span> npm run build
+<span style="color:#fb660a;font-weight:bold">FROM</span><span style="color:#0086d2"> nginx:1.15</span>
+<span style="color:#fb660a;font-weight:bold">COPY</span> --from=build-stage /app /usr/share/nginx/html
+<span style="color:#fb660a;font-weight:bold">COPY</span> ./nginx.conf /etc/nginx/conf.d/default.conf
+</code></pre></div><p><code>webpack.config.js</code></p>
+<div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#fb660a;font-weight:bold">const</span> path = require(<span style="color:#0086d2">&#39;path&#39;</span>)
+module.exports = {
+  entry: <span style="color:#0086d2">&#39;./src/index.js&#39;</span>,
+  output: {
+    path: path.resolve(<span style="color:#0086d2">&#39;dist&#39;</span>),
+    filename: <span style="color:#0086d2">&#39;main.js&#39;</span>
   },
-  <span style="color:#a6e22e">module</span><span style="color:#f92672">:</span> {
-    <span style="color:#a6e22e">loaders</span><span style="color:#f92672">:</span> [
-      { <span style="color:#a6e22e">test</span><span style="color:#f92672">:</span> <span style="color:#e6db74">/\.jsx?$/</span>, <span style="color:#a6e22e">loader</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;babel-loader&#39;</span>, <span style="color:#a6e22e">exclude</span><span style="color:#f92672">:</span> <span style="color:#e6db74">/node_modules/</span> }
+  module: {
+    loaders: [
+      { test: <span style="color:#0086d2">/\.jsx?$/</span>, loader: <span style="color:#0086d2">&#39;babel-loader&#39;</span>, exclude: <span style="color:#0086d2">/node_modules/</span> }
     ]
   }
 }
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-nginx" data-lang="nginx"><span style="color:#66d9ef">server</span> {
-  <span style="color:#f92672">listen</span> <span style="color:#ae81ff">80</span>;
+</code></pre></div><div class="highlight"><pre style="color:#fff;background-color:#111;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-nginx" data-lang="nginx"><span style="color:#fb660a;font-weight:bold">server</span> {
+  <span style="color:#fb660a;font-weight:bold">listen</span> <span style="color:#0086f7;font-weight:bold">80</span>;
   
-  <span style="color:#f92672">location</span> <span style="color:#e6db74">/</span> {
-    <span style="color:#f92672">root</span> <span style="color:#e6db74">/usr/share/nginx/html</span>;
-    <span style="color:#f92672">index</span> <span style="color:#e6db74">index.html</span> <span style="color:#e6db74">index.htm</span>;
-    <span style="color:#f92672">try_files</span> $uri $uri/ <span style="color:#e6db74">/index.html</span> =<span style="color:#ae81ff">404</span>;
+  <span style="color:#fb660a;font-weight:bold">location</span> <span style="color:#0086d2">/</span> {
+    <span style="color:#fb660a;font-weight:bold">root</span> <span style="color:#0086d2">/usr/share/nginx/html</span>;
+    <span style="color:#fb660a;font-weight:bold">index</span> <span style="color:#0086d2">index.html</span> <span style="color:#0086d2">index.htm</span>;
+    <span style="color:#fb660a;font-weight:bold">try_files</span> <span style="color:#fb660a">$uri</span> <span style="color:#fb660a">$uri/</span> <span style="color:#0086d2">/index.html</span> =<span style="color:#0086f7;font-weight:bold">404</span>;
   }
   
-  <span style="color:#f92672">include</span> <span style="color:#e6db74">/etc/nginx/extra-conf.d/*.conf</span>;
+  <span style="color:#fb660a;font-weight:bold">include</span> <span style="color:#0086d2">/etc/nginx/extra-conf.d/*.conf</span>;
 }
 </code></pre></div>
-      </div></div>
-
-  
-  
-<div class="pagination">
-    <div class="pagination__title">
-        <span class="pagination__title-h">Read other posts</span>
-        <hr />
-    </div>
-    <div class="pagination__buttons">
-        
-        <span class="button previous">
-            <a href="https://0xack13.github.io/posts/azure-devops-ssh-tasks/">
-                <span class="button__icon">←</span>
-                <span class="button__text">Azure Devops Ssh Tasks</span>
-            </a>
-        </span>
-        
-        
-        <span class="button next">
-            <a href="https://0xack13.github.io/posts/hello/">
-                <span class="button__text">Dockerizing ASP.NET core app</span>
-                <span class="button__icon">→</span>
-            </a>
-        </span>
-        
-    </div>
-</div>
-
-  
-
-  
-
-</div>
-
-  </div>
-
-  
-    <footer class="footer">
-  <div class="footer__inner">
-    
-      <div class="copyright">
-        <span>© 2020 Powered by <a href="http://gohugo.io">Hugo</a></span>
-    
-        <span>:: Theme made by <a href="https://twitter.com/panr">panr</a></span>
       </div>
-  </div>
-</footer>
-
-<script src="https://0xack13.github.io/assets/main.js"></script>
-<script src="https://0xack13.github.io/assets/prism.js"></script>
 
 
+      <footer>
+        
 
 
+        
+        
+        
+      </footer>
+    </article>
 
-  
-</div>
+    
+  </section>
 
-</body>
+      </div>
+
+      
+  <footer class="footer">
+    <section class="container">
+      
+      
+        ©
+        
+        2020
+        
+      
+      
+         · 
+        Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+      
+      
+    </section>
+  </footer>
+
+    </main>
+
+    
+
+    
+
+    
+
+  </body>
+
 </html>
