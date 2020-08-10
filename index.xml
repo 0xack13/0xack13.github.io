@@ -23,6 +23,18 @@
 			</description>
 		</item>
 		<item>
+			<title>Run MySQL Server on Docker - Development</title>
+			<link>https://0xack13.github.io/posts/run-mysql-on-docker/</link>
+			<pubDate>Sun, 02 Aug 2020 21:40:08 +1000</pubDate>
+			
+			<guid>https://0xack13.github.io/posts/run-mysql-on-docker/</guid>
+			<description>
+				
+				Run MySQL Server on Docker - Development
+				
+			</description>
+		</item>
+		<item>
 			<title>Minikube with VMware Fusion Driver</title>
 			<link>https://0xack13.github.io/posts/minikube-vmware-fusion/</link>
 			<pubDate>Sun, 26 Jul 2020 14:49:47 -0400</pubDate>
@@ -107,6 +119,18 @@ public cl...
 			<description>
 				
 				In these series, I will show lessons that I noticed during my learning journey of the javaascript language. I’m tr...
+				
+			</description>
+		</item>
+		<item>
+			<title>Enable Zooming in Mac OSX</title>
+			<link>https://0xack13.github.io/posts/zoome-screen-macosx/</link>
+			<pubDate>Thu, 02 Aug 2018 17:20:23 +1000</pubDate>
+			
+			<guid>https://0xack13.github.io/posts/zoome-screen-macosx/</guid>
+			<description>
+				
+				
 				
 			</description>
 		</item>

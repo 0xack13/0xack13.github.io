@@ -18,6 +18,26 @@
   </url>
   
   <url>
+    <loc>https://0xack13.github.io/categories/</loc>
+    <lastmod>2020-08-02T21:40:08+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://0xack13.github.io/categories/docker/</loc>
+    <lastmod>2020-08-02T21:40:08+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://0xack13.github.io/categories/mysql/</loc>
+    <lastmod>2020-08-02T21:40:08+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://0xack13.github.io/posts/run-mysql-on-docker/</loc>
+    <lastmod>2020-08-02T21:40:08+10:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://0xack13.github.io/tags/darwin/</loc>
     <lastmod>2020-07-26T14:49:47-04:00</lastmod>
   </url>
@@ -68,11 +88,6 @@
   </url>
   
   <url>
-    <loc>https://0xack13.github.io/categories/</loc>
-    <lastmod>2018-10-24T21:20:42+11:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://0xack13.github.io/tags/dev/</loc>
     <lastmod>2018-10-24T21:20:42+11:00</lastmod>
   </url>
@@ -95,6 +110,11 @@
   <url>
     <loc>https://0xack13.github.io/categories/publishing/</loc>
     <lastmod>2018-10-24T21:20:42+11:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://0xack13.github.io/posts/zoome-screen-macosx/</loc>
+    <lastmod>2018-08-02T17:20:23+10:00</lastmod>
   </url>
   
 </urlset>
