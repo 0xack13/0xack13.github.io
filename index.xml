@@ -6,10 +6,24 @@
     <description>Recent content on 0xack13 - Terminal Adventures..</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 02 Aug 2020 21:40:08 +1000</lastBuildDate>
+    <lastBuildDate>Mon, 10 Aug 2020 13:45:58 +1000</lastBuildDate>
     
 	<atom:link href="https://0xack13.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Access Ec2 Linux Without Pem</title>
+      <link>https://0xack13.github.io/posts/access-ec2-linux-without-pem/</link>
+      <pubDate>Mon, 10 Aug 2020 13:45:58 +1000</pubDate>
+      
+      <guid>https://0xack13.github.io/posts/access-ec2-linux-without-pem/</guid>
+      <description>Sometimes you don&amp;rsquo;t need to provide or share the pem key with other team members. You can simply do the following in order to avoid that:
+ Create a new user Add the user to the sudeor file Enable password authentication  Here&amp;rsquo;re the details:
+Create the new user:
+sudo adduser mynewuser Add the user to the sudeor file:
+sudo visudo Add the following
+mynewuser ALL=(ALL:ALL) ALL Update the ssh config file:</description>
+    </item>
     
     <item>
       <title>Run MySQL Server on Docker - Development</title>
