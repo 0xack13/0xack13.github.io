@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>development on 0xack13 - Terminal Adventures..</title>
-    <link>https://0xack13.github.io/categories/development/</link>
-    <description>Recent content in development on 0xack13 - Terminal Adventures..</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Wed, 24 Oct 2018 21:20:42 +1100</lastBuildDate>
-    
-	<atom:link href="https://0xack13.github.io/categories/development/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Javscript Notes</title>
-      <link>https://0xack13.github.io/posts/javascript-notes/</link>
-      <pubDate>Wed, 24 Oct 2018 21:20:42 +1100</pubDate>
-      
-      <guid>https://0xack13.github.io/posts/javascript-notes/</guid>
-      <description>In these series, I will show lessons that I noticed during my learning journey of the javaascript language. I&amp;rsquo;m trying here to highlight on each tip on a practical way rather than devling into the details. Just keep in mind that Mozilla documentation should be your friend and you should be familiar with it.
-Well, I&amp;rsquo;d couldn&amp;rsquo;t help it either. So, you can skip to your tip.
- defineProperty ~indexOf [proto and prototype](#proto and prototype) call vs.</description>
-    </item>
-    
-  </channel>
+	<channel>
+		<title>development on 0xack13 - Terminal Adventures</title>
+		<link>https://0xack13.github.io/categories/development/</link>
+		<description>Recent content in development on 0xack13.github.io</description>
+		<generator>Hugo -- gohugo.io</generator>
+		<language>en-us</language>
+		<lastBuildDate>Wed, 24 Oct 2018 21:20:42 +1100</lastBuildDate>
+		
+		<atom:link href="https://0xack13.github.io/categories/development/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Javscript Notes</title>
+			<link>https://0xack13.github.io/posts/javascript-notes/</link>
+			<pubDate>Wed, 24 Oct 2018 21:20:42 +1100</pubDate>
+			
+			<guid>https://0xack13.github.io/posts/javascript-notes/</guid>
+			<description>
+				
+				In these series, I will show lessons that I noticed during my learning journey of the javaascript language. I’m tr...
+				
+			</description>
+		</item>
+		
+	</channel>
 </rss>
